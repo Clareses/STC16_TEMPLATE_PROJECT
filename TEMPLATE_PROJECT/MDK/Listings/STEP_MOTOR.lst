@@ -1,4 +1,4 @@
-C251 COMPILER V5.60.0,  STEP_MOTOR                                                         03/01/22  15:51:57  PAGE 1   
+C251 COMPILER V5.60.0,  STEP_MOTOR                                                         03/01/22  18:05:59  PAGE 1   
 
 
 C251 COMPILER V5.60.0, COMPILATION OF MODULE STEP_MOTOR
@@ -9,17 +9,85 @@ COMPILER INVOKED BY: F:\ProgramData\keil5\C251\BIN\C251.EXE ..\CODES\DRIVER\STEP
 
 stmt  level    source
 
-*** WARNING C38 IN LINE 1 OF ..\CODES\DRIVER\STEP_MOTOR.c: empty translation unit
+    1          /*
+    2           * @Description  : 步进电机控制实现
+    3           * @Author       : FZU Liao
+    4           * @Date         : 2022-01-03 15:48:25
+    5           * @LastEditors  : Liao
+    6           * @LastEditTime : 2022-01-03 17:10:20
+    7           * @FilePath     : \DRIVER\STEP_MOTOR.c
+    8           * Copyright 2022 FZU Liao, All Rights Reserved. 
+    9           */
+   10          
+   11          //步进电机控制芯片HIP4082真值表
+   12          /*——————————————————————————————————�
+             -��————————————————————
+   13           |  | ALI | BLI |   | ALO | AHO | BLO | BHO | |  STATE  |
+   14           |  —————————————————————————————————�
+             -�——————— | ——————— |
+   15           |  |  1  |  0  |   |  1  |  0  |  0  |  1  | | FORWARD |
+   16           |  —————————————————————————————————�
+             -�——————— | ——————— |
+   17           |  |  0  |  1  |   |  0  |  1  |  1  |  0  | |   BACK  |
+   18           |  —————————————————————————————————�
+             -�——————— | ——————— |
+   19           |  |  1  |  1  |   |  1  |  0  |  1  |  0  | |   STOP  | 
+   20           |  —————————————————————————————————�
+             -�——————— | ——————— |
+   21           |  |  0  |  0  |   |  0  |  1  |  0  |  1  | |   NULL  |
+   22          ———————————————————————————————————
+             -—————————————————————*/
+   23          
+   24          #include "STEP_MOTOR.h"
+   25          #include "DELAY.h"
+   26          
+   27          void STEP_MOTOR_INIT(STEP_MOTOR MOTOR,PWM_CHANNEL_enum ALI,PWM_CHANNEL_enum BLI){
+   28   1          MOTOR->MOTOR_PWM_Duty = 0;
+   29   1          MOTOR->MOTOR_ALI = ALI;
+   30   1          MOTOR->MOTOR_BLI = BLI;
+   31   1          PWM_INIT_PWMCHANNEL(ALI,200,0);
+   32   1          PWM_INIT_PWMCHANNEL(BLI,200,0);
+   33   1      }
+   34          
+   35          void STEP_MOTOR_SET_DUTY(STEP_MOTOR MOTOR,uint16 Duty){
+   36   1          MOTOR->MOTOR_PWM_Duty = Duty;
+   37   1          PWM_SET_DUTY(MOTOR->MOTOR_ALI,Duty);
+   38   1          PWM_SET_DUTY(MOTOR->MOTOR_BLI,Duty);
+   39   1      }
+   40          
+   41          void STEP_MOTOR_FORWARD(STEP_MOTOR MOTOR){
+   42   1          PWM_DISABLE(MOTOR->MOTOR_ALI);
+   43   1          PWM_DISABLE(MOTOR->MOTOR_BLI);
+   44   1          DELAY_us(500);
+   45   1          PWM_ENABLE(MOTOR->MOTOR_ALI);
+   46   1      }
+   47          
+   48          void STEP_MOTOR_STOP(STEP_MOTOR MOTOR){
+   49   1          PWM_DISABLE(MOTOR->MOTOR_ALI);
+   50   1          PWM_DISABLE(MOTOR->MOTOR_BLI);
+   51   1          DELAY_us(500);
+C251 COMPILER V5.60.0,  STEP_MOTOR                                                         03/01/22  18:05:59  PAGE 2   
+
+   52   1          PWM_ENABLE(MOTOR->MOTOR_ALI);
+   53   1          PWM_ENABLE(MOTOR->MOTOR_BLI);
+   54   1      }
+   55          
+   56          void STEP_MOTOR_BACK(STEP_MOTOR MOTOR){
+   57   1          PWM_DISABLE(MOTOR->MOTOR_ALI);
+   58   1          PWM_DISABLE(MOTOR->MOTOR_BLI);
+   59   1          DELAY_us(500);
+   60   1          PWM_ENABLE(MOTOR->MOTOR_BLI);
+   61   1      }
 
 
 Module Information          Static   Overlayable
 ------------------------------------------------
-  code size            =    ------     ------
+  code size            =       221     ------
   ecode size           =    ------     ------
   data size            =    ------     ------
   idata size           =    ------     ------
   pdata size           =    ------     ------
-  xdata size           =    ------     ------
+  xdata size           =    ------          4
   xdata-const size     =    ------     ------
   edata size           =    ------     ------
   bit size             =    ------     ------
@@ -33,4 +101,4 @@ Module Information          Static   Overlayable
 End of Module Information.
 
 
-C251 COMPILATION COMPLETE.  1 WARNING(S),  0 ERROR(S)
+C251 COMPILATION COMPLETE.  0 WARNING(S),  0 ERROR(S)

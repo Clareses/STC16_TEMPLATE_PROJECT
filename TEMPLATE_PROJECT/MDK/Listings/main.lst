@@ -1,4 +1,4 @@
-C251 COMPILER V5.60.0,  main                                                               03/01/22  15:51:56  PAGE 1   
+C251 COMPILER V5.60.0,  main                                                               03/01/22  18:05:59  PAGE 1   
 
 
 C251 COMPILER V5.60.0, COMPILATION OF MODULE main
@@ -9,31 +9,28 @@ COMPILER INVOKED BY: F:\ProgramData\keil5\C251\BIN\C251.EXE ..\CODES\USERS\main.
 stmt  level    source
 
     1          #include "HEADFILE.h"
-    2          #include "PID.h"
-    3          #include "ENCODE_SENSOR.h"
-    4          #include "SERVO_MOTOR.h"
-    5          
-    6          void SYS_INIT_ALL(){
-    7   1              DELAY_INIT();
-    8   1          EXINT_ADDRESS_INIT();
-    9   1          TIMER_ADDRESS_INIT();
-   10   1          IQR_Enable_ALL();
-   11   1          //TASK_INIT_TASKSYS();  //多任务系统,开启则占用定时器TIMER0
-   12   1      }
+    2          
+    3          void SYS_INIT_ALL(){
+    4   1              DELAY_INIT();
+    5   1          EXINT_ADDRESS_INIT();
+    6   1          TIMER_ADDRESS_INIT();
+    7   1          IQR_Enable_ALL();
+    8   1          //TASK_INIT_TASKSYS();  //多任务系统,开启则占用定时器TIMER0
+    9   1      }
+   10          
+   11          //UserCode-------------------------------------------------------------------------------------------
+   12          
    13          
-   14          //UserCode-------------------------------------------------------------------------------------------
-   15          
+   14          
+   15          //UserCode-------------------------------------------------------------------------------------------
    16          
-   17          
-   18          //UserCode-------------------------------------------------------------------------------------------
-   19          
-   20          void main(){
-   21   1          SYS_INIT_ALL();
+   17          void main(){
+   18   1          SYS_INIT_ALL();
+   19   1          //UserCode---------------------------------------------------------------------------------------
+   20   1              
+   21   1              
    22   1          //UserCode---------------------------------------------------------------------------------------
-   23   1              
-   24   1              
-   25   1          //UserCode---------------------------------------------------------------------------------------
-   26   1      }
+   23   1      }
 
 
 Module Information          Static   Overlayable
