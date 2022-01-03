@@ -1,0 +1,132 @@
+C251 COMPILER V5.60.0,  PWM                                                                03/01/22  15:50:05  PAGE 1   
+
+
+C251 COMPILER V5.60.0, COMPILATION OF MODULE PWM
+OBJECT MODULE PLACED IN ..\Output\PWM.obj
+COMPILER INVOKED BY: F:\ProgramData\keil5\C251\BIN\C251.EXE ..\CODES\BOARD\PWM.c LARGE INTR2 BROWSE INCDIR(..\CODES\BOAR
+                    -D;..\CODES\ALGORITHM;..\CODES\DRIVER;..\CODES\USERS) DEBUG PRINT(.\Listings\PWM.lst) OBJECT(..\Output\PWM.obj) 
+
+stmt  level    source
+
+    1          /*
+    2           * @Description  : PWM输出的具体实现
+    3           * @Author       : FZU Liao
+    4           * @Date         : 2021-12-31 19:34:13
+    5           * @LastEditors  : Liao
+    6           * @LastEditTime : 2022-01-03 11:15:44
+    7           * @FilePath     : \BOARD\PWM.c
+    8           * Copyright 2021 FZU Liao, All Rights Reserved. 
+    9           */
+   10          
+   11          #include "PWM.h"
+   12          
+   13          const uint32 PWM_CCMR_ADDR[] = {0x7efec8, 0x7efec9, 0x7efeca ,0x7efecb,
+   14                                          0x7efee8, 0x7efee9, 0x7efeea, 0x7efeeb};
+   15          const uint32  PWM_CCR_ADDR[] = {0x7efed5, 0x7efed7, 0x7efed9, 0x7efedb,
+   16                                                                      0x7efef5, 0x7efef7, 0x7efef9, 0x7efefb};
+   17          const uint32 PWM_CCER_ADDR[] = {0x7efecc, 0x7efecd, 0x7efeec ,0x7efeed};
+   18          const uint32  PWM_ARR_ADDR[] = {0x7efed2,0x7efef2};
+   19          
+   20          void PWM_INIT_PWMCHANNEL(PWM_CHANNEL_enum PWMn_CHx_Pin,uint32 Frequecy, uint16 Duty){
+   21   1              uint16 DUTY_RATIO;              //占空比
+   22   1              uint16 CYCLE_TIME;              //周期
+   23   1              uint16 FREQUENCY_DIVIDER = 0;   //分频
+   24   1      
+   25   1          P_SW2 |= 0x80;
+   26   1      
+   27   1              if(Frequecy>500){
+   28   2                      FREQUENCY_DIVIDER = (SYS_CLK / Frequecy) >> 16;
+   29   2                      CYCLE_TIME = SYS_CLK / Frequecy;                        
+   30   2                      CYCLE_TIME = CYCLE_TIME / (FREQUENCY_DIVIDER + 1) - 1;
+   31   2              }else{
+   32   2                      FREQUENCY_DIVIDER = (SYS_CLK/Frequecy/PWM_MAX_DUTY) - 1;
+   33   2                      CYCLE_TIME = PWM_MAX_DUTY;                      
+   34   2              }
+   35   1      
+   36   1              DUTY_RATIO = CYCLE_TIME * ((float)Duty/PWM_MAX_DUTY);
+   37   1          //PWMB配置
+   38   1              if(PWMB_CH1_P20 <= PWMn_CHx_Pin){
+   39   2                      PWM2_ENO |= (1 << ((2 * ((PWMn_CHx_Pin >> 4) - 4))));
+   40   2                      PWM2_PS |= ((PWMn_CHx_Pin & 0x03) << ((2 * ((PWMn_CHx_Pin >> 4) - 4))));
+   41   2      
+   42   2                      (*(unsigned char volatile far*)(PWM_CCER_ADDR[PWMn_CHx_Pin>>5]))|=(uint8)(1<<(((PWMn_CHx_Pin>>4)&0x01)*
+             -4));
+   43   2      
+   44   2                      PWM2_PSCRH = (uint8)(FREQUENCY_DIVIDER>>8);
+   45   2                      PWM2_PSCRL = (uint8)FREQUENCY_DIVIDER;
+   46   2      
+   47   2              }
+   48   1          //PWMA配置
+   49   1              else{
+   50   2                      PWM1_ENO |= (1 << (PWMn_CHx_Pin & 0x01)) << ((PWMn_CHx_Pin >> 4) * 2);  
+   51   2                      PWM1_PS  |= ((PWMn_CHx_Pin & 0x07) >> 1) << ((PWMn_CHx_Pin >> 4) * 2); 
+   52   2                      (*(unsigned char volatile far *) (PWM_CCER_ADDR[PWMn_CHx_Pin>>5])) 
+   53   2                              |= (1 << ((PWMn_CHx_Pin & 0x01) * 2 + ((PWMn_CHx_Pin >> 4) & 0x01) * 0x04));
+   54   2                      PWM1_PSCRH = (uint8)(FREQUENCY_DIVIDER>>8);
+   55   2                      PWM1_PSCRL = (uint8)FREQUENCY_DIVIDER;
+   56   2              }
+   57   1              
+C251 COMPILER V5.60.0,  PWM                                                                03/01/22  15:50:05  PAGE 2   
+
+   58   1              (*(unsigned char volatile far *) (PWM_ARR_ADDR[PWMn_CHx_Pin>>6]))       = (uint8)(CYCLE_TIME>>8);
+   59   1              (*(unsigned char volatile far *) (PWM_ARR_ADDR[PWMn_CHx_Pin>>6] + 1))   = (uint8)CYCLE_TIME;
+   60   1      
+   61   1              (*(unsigned char volatile far *) (PWM_CCR_ADDR[PWMn_CHx_Pin>>4]))               = DUTY_RATIO>>8;
+   62   1              (*(unsigned char volatile far *) (PWM_CCR_ADDR[PWMn_CHx_Pin>>4] + 1))  = (uint8)DUTY_RATIO;
+   63   1              
+   64   1              (*(unsigned char volatile far *) (PWM_CCMR_ADDR[PWMn_CHx_Pin>>4])) |= 0x06<<4;
+   65   1              (*(unsigned char volatile far *) (PWM_CCMR_ADDR[PWMn_CHx_Pin>>4])) |= 1<<3;
+   66   1      }
+   67          
+   68          void PWM_SET_DUTY(PWM_CHANNEL_enum PWMn_CHx_Pin,uint16 Duty){
+   69   1          uint16 DUTY_RATIO;
+   70   1              uint16 ARR = ((*(unsigned char volatile far *) (PWM_ARR_ADDR[PWMn_CHx_Pin>>6]))<<8) 
+   71   1                       |(*(unsigned char volatile far *) (PWM_ARR_ADDR[PWMn_CHx_Pin>>6] + 1 ));
+   72   1              DUTY_RATIO = ARR * ((float)Duty/PWM_MAX_DUTY);
+   73   1              (*(unsigned char volatile far *) (PWM_CCR_ADDR[PWMn_CHx_Pin>>4]))         = DUTY_RATIO>>8;      
+   74   1              (*(unsigned char volatile far *) (PWM_CCR_ADDR[PWMn_CHx_Pin>>4] + 1)) = (uint8)DUTY_RATIO;
+   75   1      }
+   76          
+   77          void PWM_ENABLE(PWM_CHANNEL_enum PWMn_CHx_Pin){
+   78   1          if(PWMB_CH1_P20 <= PWMn_CHx_Pin){
+   79   2              PWM2_BKR |= 0x80;
+   80   2              PWM2_CR1 |= 0x01;
+   81   2          }else{
+   82   2              PWM1_BKR |= 0x80;
+   83   2              PWM1_CR1 |= 0x01;
+   84   2          }
+   85   1      }
+   86          
+   87          void PWM_DISABLE(PWM_CHANNEL_enum PWMn_CHx_Pin){
+   88   1          if(PWMB_CH1_P20 <= PWMn_CHx_Pin){
+   89   2              PWM2_BKR &= 0x7F;
+   90   2              PWM2_CR1 &= 0xFE;
+   91   2          }else{
+   92   2              PWM1_BKR &= 0x7F;
+   93   2              PWM1_CR1 &= 0xFE;
+   94   2          }
+   95   1      }
+
+
+Module Information          Static   Overlayable
+------------------------------------------------
+  code size            =      1048     ------
+  ecode size           =    ------     ------
+  data size            =    ------     ------
+  idata size           =    ------     ------
+  pdata size           =    ------     ------
+  xdata size           =    ------     ------
+  xdata-const size     =    ------     ------
+  edata size           =    ------     ------
+  bit size             =    ------     ------
+  ebit size            =    ------     ------
+  bitaddressable size  =    ------     ------
+  ebitaddressable size =    ------     ------
+  far data size        =    ------     ------
+  huge data size       =    ------     ------
+  const size           =    ------     ------
+  hconst size          =        88     ------
+End of Module Information.
+
+
+C251 COMPILATION COMPLETE.  0 WARNING(S),  0 ERROR(S)
