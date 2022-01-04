@@ -1,0 +1,6 @@
+{
+    "files.associations": {
+        "pwm.h": "c",
+        "servo_motor.h": "c"
+    }
+}

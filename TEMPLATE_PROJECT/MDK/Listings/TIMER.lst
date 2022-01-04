@@ -1,4 +1,4 @@
-C251 COMPILER V5.60.0,  TIMER                                                              03/01/22  15:50:06  PAGE 1   
+C251 COMPILER V5.60.0,  TIMER                                                              04/01/22  11:56:16  PAGE 1   
 
 
 C251 COMPILER V5.60.0, COMPILATION OF MODULE TIMER
@@ -66,7 +66,7 @@ stmt  level    source
    56   1          IE2 |= 0x64;
    57   1      }
    58          
-C251 COMPILER V5.60.0,  TIMER                                                              03/01/22  15:50:06  PAGE 2   
+C251 COMPILER V5.60.0,  TIMER                                                              04/01/22  11:56:16  PAGE 2   
 
    59          void TIMER_SET_TIMES(TIMER_enum Timerx,TIMER_COUNTER_enum TorC,uint16 times){
 *** WARNING C57 IN LINE 59 OF ..\CODES\BOARD\TIMER.c: parameter 3: different from declaration
@@ -134,7 +134,7 @@ stmt  level    source
   118   2              );
   119   2          }
   120   1          TIMER_SET_TIMES(Timerx,TorC,times);
-C251 COMPILER V5.60.0,  TIMER                                                              03/01/22  15:50:06  PAGE 3   
+C251 COMPILER V5.60.0,  TIMER                                                              04/01/22  11:56:16  PAGE 3   
 
 *** WARNING C188 IN LINE 120 OF ..\CODES\BOARD\TIMER.c: 'parameter 3': value truncated
   121   1      }
@@ -202,7 +202,7 @@ stmt  level    source
   180   2              break;    
   181   2          default:
   182   2              break;
-C251 COMPILER V5.60.0,  TIMER                                                              03/01/22  15:50:06  PAGE 4   
+C251 COMPILER V5.60.0,  TIMER                                                              04/01/22  11:56:16  PAGE 4   
 
   183   2          }
   184   1      }
@@ -271,7 +271,7 @@ Module Information          Static   Overlayable
   pdata size           =    ------     ------
   xdata size           =        77          3
   xdata-const size     =    ------     ------
-C251 COMPILER V5.60.0,  TIMER                                                              03/01/22  15:50:06  PAGE 5   
+C251 COMPILER V5.60.0,  TIMER                                                              04/01/22  11:56:16  PAGE 5   
 
   edata size           =    ------     ------
   bit size             =    ------     ------

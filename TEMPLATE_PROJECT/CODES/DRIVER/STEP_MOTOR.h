@@ -3,15 +3,15 @@
  * @Author       : FZU Liao
  * @Date         : 2022-01-03 15:48:15
  * @LastEditors  : Liao
- * @LastEditTime : 2022-01-03 17:10:37
- * @FilePath     : \DRIVER\STEP_MOTOR.h
+ * @LastEditTime : 2022-01-04 23:04:24
+ * @FilePath     : \TEMPLATE_PROJECT\CODES\DRIVER\STEP_MOTOR.h
  * Copyright 2022 FZU Liao, All Rights Reserved. 
  */
 
 #ifndef __STEP_MOTOR_H__
 #define __STEP_MOTOR_H__
 
-#include "PWM.h"
+#include "..\BOARD\PWM.h"
 
 struct STEP_MOTOR_STRUCT{
     PWM_CHANNEL_enum MOTOR_ALI;
@@ -19,7 +19,7 @@ struct STEP_MOTOR_STRUCT{
     uint16 MOTOR_PWM_Duty;
 };
 
-typedef struct STEP_MOTOR_STRUCT* STEP_MOTOR;
+typedef struct STEP_MOTOR_STRUCT STEP_MOTOR;
 
 /**
  * @description: 初始化步进电机
@@ -29,7 +29,7 @@ typedef struct STEP_MOTOR_STRUCT* STEP_MOTOR;
  * @return NULL
  * @example:
  */
-void STEP_MOTOR_INIT(STEP_MOTOR MOTOR,PWM_CHANNEL_enum ALI,PWM_CHANNEL_enum BLI);
+void STEP_MOTOR_INIT(STEP_MOTOR* MOTOR,PWM_CHANNEL_enum ALI,PWM_CHANNEL_enum BLI);
 
 /**
  * @description: 步进电机动力设置
@@ -38,7 +38,7 @@ void STEP_MOTOR_INIT(STEP_MOTOR MOTOR,PWM_CHANNEL_enum ALI,PWM_CHANNEL_enum BLI)
  * @return NULL
  * @example: 
  */
-void STEP_MOTOR_SET_DUTY(STEP_MOTOR MOTOR,uint16 Duty);
+void STEP_MOTOR_SET_DUTY(STEP_MOTOR* MOTOR,uint16 Duty);
 
 /**
  * @description: 控制前进供电
@@ -46,7 +46,7 @@ void STEP_MOTOR_SET_DUTY(STEP_MOTOR MOTOR,uint16 Duty);
  * @return NULL
  * @example: 
  */
-void STEP_MOTOR_FORWARD(STEP_MOTOR MOTOR);
+void STEP_MOTOR_FORWARD(STEP_MOTOR* MOTOR);
 
 /**
  * @description: 控制刹车
@@ -54,7 +54,7 @@ void STEP_MOTOR_FORWARD(STEP_MOTOR MOTOR);
  * @return NULL
  * @example: 
  */
-void STEP_MOTOR_STOP(STEP_MOTOR MOTOR);
+void STEP_MOTOR_STOP(STEP_MOTOR* MOTOR);
 
 /**
  * @description: 控制后退供电
@@ -62,6 +62,6 @@ void STEP_MOTOR_STOP(STEP_MOTOR MOTOR);
  * @return NULL
  * @example: 
  */
-void STEP_MOTOR_BACK(STEP_MOTOR MOTOR);
+void STEP_MOTOR_BACK(STEP_MOTOR* MOTOR);
 
 #endif

@@ -3,8 +3,8 @@
  * @Author       : FZU Liao
  * @Date         : 2022-01-01 21:20:35
  * @LastEditors  : Liao
- * @LastEditTime : 2022-01-01 21:58:58
- * @FilePath     : \TASK.h
+ * @LastEditTime : 2022-01-04 23:02:20
+ * @FilePath     : \TEMPLATE_PROJECT\CODES\BOARD\TASK.h
  * @note         : 若使用多任务，则默认TIEMR0作为系统时钟，不可再进行修改
  * Copyright 2022 FZU Liao, All Rights Reserved. 
  */
@@ -16,12 +16,14 @@
 
 #define TASK_MAX_N 4
 
-typedef struct TASK{
+typedef struct Task{
     uint16 COUNTER;
     uint16 THRESHOLD;
     void (*FUNC)();
     uint8 ID;
 };
+
+typedef struct Task TASK;
 
 /**
  * @description: 初始化任务系统,包括TIMER0初始化等
@@ -39,7 +41,7 @@ void TASK_INIT_TASKSYS();
  * @return *
  * @example: 
  */
-void TASK_INIT_NEWTASK(struct Task* task,uint16 Threshold,void (*func)());
+void TASK_INIT_NEWTASK(TASK* task,uint16 Threshold,void (*func)());
 
 /**
  * @description: 设置/修改任务函数
@@ -48,7 +50,7 @@ void TASK_INIT_NEWTASK(struct Task* task,uint16 Threshold,void (*func)());
  * @return *
  * @example: 
  */
-void TASK_SETFUNC(void (*func)(),struct Task* task);
+void TASK_SETFUNC(void (*func)(),TASK* task);
 
 /**
  * @description: 向任务系统中添加任务
@@ -56,7 +58,7 @@ void TASK_SETFUNC(void (*func)(),struct Task* task);
  * @return *
  * @example: 
  */
-void TASK_ADD_TASK(struct Task* task);
+void TASK_ADD_TASK(TASK* task);
 
 /**
  * @description: 从任务系统中删除任务
@@ -64,7 +66,7 @@ void TASK_ADD_TASK(struct Task* task);
  * @return *
  * @example: 
  */
-void TASK_DELETE_TASK(struct Task* task);
+void TASK_DELETE_TASK(TASK* task);
 
 /**
  * @description: 暂停任务系统

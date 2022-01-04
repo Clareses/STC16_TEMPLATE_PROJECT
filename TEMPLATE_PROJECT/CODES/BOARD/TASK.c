@@ -3,17 +3,17 @@
  * @Author       : FZU Liao
  * @Date         : 2022-01-01 21:20:45
  * @LastEditors  : Liao
- * @LastEditTime : 2022-01-03 11:23:59
- * @FilePath     : \BOARD\TASK.c
+ * @LastEditTime : 2022-01-04 23:03:02
+ * @FilePath     : \TEMPLATE_PROJECT\CODES\BOARD\TASK.c
  * Copyright 2022 FZU Liao, All Rights Reserved. 
  */
 
 #include "TIMER.h"
 #include "TASK.h"
 
-struct TASK* TaskList[TASK_MAX_N];
+TASK* TaskList[TASK_MAX_N];
 
-void Task_Excute(struct TASK* task){
+void Task_Excute(TASK* task){
     if(task == 0) return;
     task->COUNTER++;
     task->COUNTER%=task->THRESHOLD;
@@ -33,22 +33,22 @@ void TASK_INIT_TASKSYS(){
     TIMER_ENABLE(Timer0);
 }
 
-void TASK_INIT_NEWTASK(struct TASK* task,uint16 Threshold,void (*func)()){
+void TASK_INIT_NEWTASK(TASK* task,uint16 Threshold,void (*func)()){
     //memset(task,0,sizeof(task));
     task->COUNTER = 0;
     task->THRESHOLD = Threshold;
     task->FUNC = func;
 }
 
-void TASK_SETID(uint8 ID,struct TASK* task){
+void TASK_SETID(uint8 ID,TASK* task){
     task->ID=ID;
 }
 
-void TASK_SETFUNC(void (*func)(),struct TASK* task){
+void TASK_SETFUNC(void (*func)(),TASK* task){
     task->FUNC=func;
 }
 
-void TASK_ADD_TASK(struct TASK* task){
+void TASK_ADD_TASK(TASK* task){
     int i;
     for (i = 0; i < TASK_MAX_N; i++) {
         if(TaskList[i]==0){
@@ -59,7 +59,7 @@ void TASK_ADD_TASK(struct TASK* task){
     }
 }
 
-void TASK_DELETE_TASK(struct TASK* task){
+void TASK_DELETE_TASK(TASK* task){
     TaskList[task->ID]=0;
 }
 

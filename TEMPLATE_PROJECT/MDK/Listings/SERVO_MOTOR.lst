@@ -1,4 +1,4 @@
-C251 COMPILER V5.60.0,  SERVO_MOTOR                                                        03/01/22  18:05:59  PAGE 1   
+C251 COMPILER V5.60.0,  SERVO_MOTOR                                                        04/01/22  11:56:17  PAGE 1   
 
 
 C251 COMPILER V5.60.0, COMPILATION OF MODULE SERVO_MOTOR
@@ -14,13 +14,13 @@ stmt  level    source
     3           * @Author       : FZU Liao
     4           * @Date         : 2022-01-03 14:35:08
     5           * @LastEditors  : Liao
-    6           * @LastEditTime : 2022-01-03 15:29:08
-    7           * @FilePath     : \DRIVER\SERVO_MOTOR.c
+    6           * @LastEditTime : 2022-01-04 11:55:11
+    7           * @FilePath     : \TEMPLATE_PROJECT\CODES\DRIVER\SERVO_MOTOR.c
     8           * Copyright 2022 FZU Liao, All Rights Reserved. 
     9           */
    10          
    11          #include "SERVO_MOTOR.h"
-   12          #include "PWM.h"
+   12          #include "..\BOARD\PWM.h"
    13          
    14          #define SERVO_OUTPUT PWMB_CH1_P74
    15          

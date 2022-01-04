@@ -3,8 +3,8 @@
  * @Author       : FZU Liao
  * @Date         : 2021-12-31 19:34:07
  * @LastEditors  : Liao
- * @LastEditTime : 2021-12-31 20:42:18
- * @FilePath     : \PWM\PWM.h
+ * @LastEditTime : 2022-01-04 11:41:22
+ * @FilePath     : \CODES\BOARD\PWM.h
  * Copyright 2021 FZU Liao, All Rights Reserved. 
  * note          : 在逐飞的板子上，有几个引脚已经被使用了:
  *                 P54被用作复位，P12被用作USB，应避免使用。

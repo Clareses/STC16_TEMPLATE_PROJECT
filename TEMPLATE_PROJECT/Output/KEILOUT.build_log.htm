@@ -22,7 +22,42 @@ F:\Files\STC16_TEMPLATE_PROJECT\TEMPLATE_PROJECT\MDK\template_project.uvproj
 Project File Date:  01/03/2022
 
 <h2>Output:</h2>
-Build target 'Target 1'
+Rebuild target 'Target 1'
+compiling ADC.c...
+compiling BOARD.c...
+compiling DELAY.c...
+compiling EXINT.c...
+compiling GPIO.c...
+compiling NVIC.c...
+compiling PWM.c...
+compiling TASK.c...
+..\CODES\BOARD\TASK.c(36): warning C52: use of undefined type 'Task'
+..\CODES\BOARD\TASK.c(36): warning C57: parameter 1: different from declaration
+..\CODES\BOARD\TASK.c(47): warning C52: use of undefined type 'Task'
+..\CODES\BOARD\TASK.c(47): warning C57: parameter 2: different from declaration
+..\CODES\BOARD\TASK.c(51): warning C52: use of undefined type 'Task'
+..\CODES\BOARD\TASK.c(51): warning C57: parameter 1: different from declaration
+..\CODES\BOARD\TASK.c(56): warning C188: 'parameter 1': value truncated
+..\CODES\BOARD\TASK.c(62): warning C52: use of undefined type 'Task'
+..\CODES\BOARD\TASK.c(62): warning C57: parameter 1: different from declaration
+compiling TIMER.c...
+..\CODES\BOARD\TIMER.c(59): warning C57: parameter 3: different from declaration
+..\CODES\BOARD\TIMER.c(62): warning C188: 'constant': value truncated
+..\CODES\BOARD\TIMER.c(64): warning C188: 'constant': value truncated
+..\CODES\BOARD\TIMER.c(120): warning C188: 'parameter 3': value truncated
+..\CODES\BOARD\TIMER.c(92): warning C47: 'func': unreferenced parameter
+..\CODES\BOARD\TIMER.c(129): warning C47: 'Timerx': unreferenced parameter
+..\CODES\BOARD\TIMER.c(129): warning C47: 'Pin_Mode': unreferenced parameter
+..\CODES\BOARD\TIMER.c(184): warning C135: 'TIMER_READ_COUNTER': no return value
+..\CODES\BOARD\TIMER.c(184): warning C135: 'TIMER_READ_COUNTER': no return value
+compiling main.c...
+..\CODES\USERS\main.c(21): warning C96: 'STEP_MOTOR_INIT': too few actual parameters
+compiling PID.c...
+..\CODES\ALGORITHM\PID.c(62): warning C47: 'PID_CONTROL': unreferenced parameter
+compiling EM_SENSOR.c...
+compiling ENCODE_SENSOR.c...
+compiling SERVO_MOTOR.c...
+compiling STEP_MOTOR.c...
 linking...
 *** WARNING L57: UNCALLED FUNCTION, IGNORED FOR OVERLAY PROCESS
     NAME:    ADC_DISABLE/ADC
@@ -91,24 +126,22 @@ linking...
 *** WARNING L57: UNCALLED FUNCTION, IGNORED FOR OVERLAY PROCESS
     NAME:    STEP_MOTOR_FORWARD/STEP_MOTOR
 *** WARNING L57: UNCALLED FUNCTION, IGNORED FOR OVERLAY PROCESS
-    NAME:    STEP_MOTOR_INIT/STEP_MOTOR
-*** WARNING L57: UNCALLED FUNCTION, IGNORED FOR OVERLAY PROCESS
     NAME:    STEP_MOTOR_STOP/STEP_MOTOR
-Program Size: data=8.0 edata+hdata=256 xdata=145 const=104 code=5297
+Program Size: data=8.0 edata+hdata=256 xdata=145 const=104 code=5300
 creating hex file from "..\Output\KEILOUT"...
 User command #1: F:\Files\STC16_TEMPLATE_PROJECT\TEMPLATE_PROJECT\MDK\KEIL_SELECT_HEX.bat
 F:\Files\STC16_TEMPLATE_PROJECT\TEMPLATE_PROJECT\MDK>set filename=KEILOUT 
 F:\Files\STC16_TEMPLATE_PROJECT\TEMPLATE_PROJECT\MDK>set path=..\Output 
-F:\Files\STC16_TEMPLATE_PROJECT\TEMPLATE_PROJECT\MDK>set datevar=20220103 
-F:\Files\STC16_TEMPLATE_PROJECT\TEMPLATE_PROJECT\MDK>set timevar=18 
-F:\Files\STC16_TEMPLATE_PROJECT\TEMPLATE_PROJECT\MDK>if /I 18 LSS 10 (set timevar=08 ) 
-F:\Files\STC16_TEMPLATE_PROJECT\TEMPLATE_PROJECT\MDK>set timevar=180647 
-F:\Files\STC16_TEMPLATE_PROJECT\TEMPLATE_PROJECT\MDK>set copyfilename=KEILOUT-20220103-180647 
-F:\Files\STC16_TEMPLATE_PROJECT\TEMPLATE_PROJECT\MDK>copy ..\Output\KEILOUT.hex ..\HEX\KEILOUT-20220103-180647.hex 
+F:\Files\STC16_TEMPLATE_PROJECT\TEMPLATE_PROJECT\MDK>set datevar=20220104 
+F:\Files\STC16_TEMPLATE_PROJECT\TEMPLATE_PROJECT\MDK>set timevar=11 
+F:\Files\STC16_TEMPLATE_PROJECT\TEMPLATE_PROJECT\MDK>if /I 11 LSS 10 (set timevar=01 ) 
+F:\Files\STC16_TEMPLATE_PROJECT\TEMPLATE_PROJECT\MDK>set timevar=115618 
+F:\Files\STC16_TEMPLATE_PROJECT\TEMPLATE_PROJECT\MDK>set copyfilename=KEILOUT-20220104-115618 
+F:\Files\STC16_TEMPLATE_PROJECT\TEMPLATE_PROJECT\MDK>copy ..\Output\KEILOUT.hex ..\HEX\KEILOUT-20220104-115618.hex 
 已复制         1 个文件。
-filename:KEILOUT-20220103-180647.hex
-"..\Output\KEILOUT" - 0 Error(s), 35 Warning(s).
-Build Time Elapsed:  00:00:01
+filename:KEILOUT-20220104-115618.hex
+"..\Output\KEILOUT" - 0 Error(s), 54 Warning(s).
+Build Time Elapsed:  00:00:03
 </pre>
 </body>
 </html>

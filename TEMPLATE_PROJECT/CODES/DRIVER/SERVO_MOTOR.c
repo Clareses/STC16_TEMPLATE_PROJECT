@@ -3,13 +3,13 @@
  * @Author       : FZU Liao
  * @Date         : 2022-01-03 14:35:08
  * @LastEditors  : Liao
- * @LastEditTime : 2022-01-03 15:29:08
- * @FilePath     : \DRIVER\SERVO_MOTOR.c
+ * @LastEditTime : 2022-01-04 23:03:52
+ * @FilePath     : \TEMPLATE_PROJECT\CODES\DRIVER\SERVO_MOTOR.c
  * Copyright 2022 FZU Liao, All Rights Reserved. 
  */
 
 #include "SERVO_MOTOR.h"
-#include "PWM.h"
+#include "..\BOARD\PWM.h"
 
 #define SERVO_OUTPUT PWMB_CH1_P74
 
