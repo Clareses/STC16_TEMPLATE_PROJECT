@@ -3,8 +3,8 @@
  * @Author       : FZU Liao
  * @Date         : 2021-12-31 19:34:13
  * @LastEditors  : Liao
- * @LastEditTime : 2022-01-03 11:15:44
- * @FilePath     : \BOARD\PWM.c
+ * @LastEditTime : 2022-01-06 00:30:39
+ * @FilePath     : \TEMPLATE_PROJECT\CODES\BOARD\PWM.c
  * Copyright 2021 FZU Liao, All Rights Reserved. 
  */
 
@@ -72,7 +72,9 @@ void PWM_SET_DUTY(PWM_CHANNEL_enum PWMn_CHx_Pin,uint16 Duty){
 	DUTY_RATIO = ARR * ((float)Duty/PWM_MAX_DUTY);
 	(*(unsigned char volatile far *) (PWM_CCR_ADDR[PWMn_CHx_Pin>>4]))	  = DUTY_RATIO>>8;	
 	(*(unsigned char volatile far *) (PWM_CCR_ADDR[PWMn_CHx_Pin>>4] + 1)) = (uint8)DUTY_RATIO;
+	PWM_ENABLE(PWMn_CHx_Pin);
 }
+
 
 void PWM_ENABLE(PWM_CHANNEL_enum PWMn_CHx_Pin){
     if(PWMB_CH1_P20 <= PWMn_CHx_Pin){

@@ -3,7 +3,7 @@
  * @Author       : FZU Liao
  * @Date         : 2022-01-03 14:35:08
  * @LastEditors  : Liao
- * @LastEditTime : 2022-01-04 23:03:52
+ * @LastEditTime : 2022-01-06 00:13:35
  * @FilePath     : \TEMPLATE_PROJECT\CODES\DRIVER\SERVO_MOTOR.c
  * Copyright 2022 FZU Liao, All Rights Reserved. 
  */
@@ -22,8 +22,8 @@ void SERVO_SET_ANGLE(short Angle){
     uint16 DUTY;
     if(Angle>75) Angle = 75;
     if(Angle<-75) Angle = -75;
-    DUTY = (Angle/90)*2000;
-    PWM_SET_DUTY(SERVO_OUTPUT,DUTY);
+    DUTY = (Angle*2000/90);
+    PWM_SET_DUTY(SERVO_OUTPUT,3000+DUTY);
 }
 
 void SERVO_DEINIT_MOTOR(){

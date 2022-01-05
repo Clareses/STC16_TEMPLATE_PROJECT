@@ -3,8 +3,8 @@
  * @Author       : FZU Liao
  * @Date         : 2022-01-01 18:18:45
  * @LastEditors  : Liao
- * @LastEditTime : 2022-01-01 20:07:24
- * @FilePath     : \ADC\ADC.c
+ * @LastEditTime : 2022-01-05 21:57:53
+ * @FilePath     : \TEMPLATE_PROJECT\CODES\BOARD\ADC.c
  * Copyright 2022 FZU Liao, All Rights Reserved. 
  */
 #include "ADC.h"
@@ -29,7 +29,7 @@ uint16 ADC_READ(ADC_CHANNEL_PIN ADC_CHANNEL_Pxx){
 	ADC_CONTR |= 0x40;
 	while (!(ADC_CONTR & 0x20));
 	ADC_CONTR &= ~0x20;
-    ADC_RESULT = ADC_RES;
+    ADC_RESULT = ADC_RES;	
     ADC_RESULT <<= 8;
     ADC_RESULT |= ADC_RESL;
 	ADC_RES = 0;

@@ -8,7 +8,7 @@
 
 ### 项目系统结构
 
-<img src="pictures/image-20220104213411495.png" alt="image-20220104213411495" style="zoom: 50%;" />
+<img src="pictures/image-20220104213411495.png" alt="image-20220104213411495"  />
 
 ### 项目目录结构
 

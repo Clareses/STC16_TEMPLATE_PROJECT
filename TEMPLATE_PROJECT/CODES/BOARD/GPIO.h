@@ -3,8 +3,8 @@
  * @Author       : FZU Liao
  * @Date         : 2021-12-29 13:07:09
  * @LastEditors  : Liao
- * @LastEditTime : 2022-01-01 19:58:51
- * @FilePath     : \GPIO\GPIO.h
+ * @LastEditTime : 2022-01-05 22:12:22
+ * @FilePath     : \TEMPLATE_PROJECT\CODES\BOARD\GPIO.h
  * Copyright 2021 FZU Liao, All Rights Reserved. 
  */
 
@@ -101,7 +101,7 @@
  * @return GPIO_EL,HIGH为高电平,LOW为低电平
  * @example: NULL
  */
-#define GPIO_READ_PIN(GPIO_Px,Pin_x) (GPIO_PX(GPIO_Px)&(Pin_x))!=0? HIGH: LOW
+#define GPIO_READ_PIN(GPIO_Px,Pin_x) (GPIO_PX(GPIO_Px)&(Pin_x))!=0? HIGH : LOW
 
 /**
  * @description: GPIO寄存器读取 
