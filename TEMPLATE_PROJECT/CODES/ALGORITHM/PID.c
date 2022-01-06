@@ -11,17 +11,17 @@
 #include "PID.h"
 #include "stdio.h"
 
-void PID_SET_TARGET(PID PID_CONTROL,float Param_Target){
+void PID_SET_TARGET(PID* PID_CONTROL,float Param_Target){
     PID_CONTROL->TARGET_VALUE = Param_Target;
 }
 
-void PID_SET_FACTORS(PID PID_CONTROL,float Param_P,float Param_I,float Param_D){
+void PID_SET_FACTORS(PID* PID_CONTROL,float Param_P,float Param_I,float Param_D){
     PID_CONTROL->FACTOR_Proportional = Param_P;
     PID_CONTROL->FACTOR_Integral     = Param_I;
     PID_CONTROL->FACTOR_Differential = Param_D;
 }
 
-float PID_CLAC_RESULT(PID PID_CONTROL,float CURRENT_INPUT){
+float PID_CLAC_RESULT(PID* PID_CONTROL,float CURRENT_INPUT){
     float PID_OUTPUT;
     float ERROR,d_ERROR;
     if(PID_CONTROL->PID_X_MODE == PID_REALIZE_MODE){
@@ -49,7 +49,7 @@ float PID_CLAC_RESULT(PID PID_CONTROL,float CURRENT_INPUT){
     return PID_OUTPUT;
 }
 
-void PID_INIT_NEWPID(PID NEW_PID,float Param_P,float Param_I,float Param_D,float Param_Target,PID_CONTROL_MODE PID_MODE){
+void PID_INIT_NEWPID(PID* NEW_PID,float Param_P,float Param_I,float Param_D,float Param_Target,PID_CONTROL_MODE PID_MODE){
     //memset(NEW_PID,0,sizeof(struct PID_CONTROL_STRUCT));
     NEW_PID->PID_X_MODE = PID_MODE;
     NEW_PID->PID_CURRENT_ERROR  = 0;
@@ -59,6 +59,6 @@ void PID_INIT_NEWPID(PID NEW_PID,float Param_P,float Param_I,float Param_D,float
     PID_SET_TARGET(NEW_PID,Param_Target);
 }
 
-void PID_DEINIT_PID(PID PID_CONTROL){
+void PID_DEINIT_PID(PID* PID_CONTROL){
     //free(PID_CONTROL);
 }

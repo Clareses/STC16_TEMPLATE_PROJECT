@@ -3,8 +3,8 @@
  * @Author       : FZU Liao
  * @Date         : 2022-01-02 20:19:26
  * @LastEditors  : Liao
- * @LastEditTime : 2022-01-02 22:00:35
- * @FilePath     : \ALGORITHM\PID.h
+ * @LastEditTime : 2022-01-06 17:20:16
+ * @FilePath     : \TEMPLATE_PROJECT\CODES\ALGORITHM\PID.h
  * Copyright 2022 FZU Liao, All Rights Reserved. 
  */
 
@@ -32,7 +32,7 @@ struct PID_CONTROL_STRUCT{
     
 };
 
-typedef struct PID_CONTROL_STRUCT* PID;
+typedef struct PID_CONTROL_STRUCT PID;
 
 /**
  * @description:             初始化PID算法
@@ -44,7 +44,7 @@ typedef struct PID_CONTROL_STRUCT* PID;
  * @return NULL
  * @example: NULL
  */
-void PID_INIT_NEWPID(PID NEW_PID,float Param_P,float Param_I,float Param_D,float Param_Target,PID_CONTROL_MODE PID_MODE);
+void PID_INIT_NEWPID(PID* NEW_PID,float Param_P,float Param_I,float Param_D,float Param_Target,PID_CONTROL_MODE PID_MODE);
 
 /**
  * @description:              为PID算法设定目标值
@@ -53,7 +53,7 @@ void PID_INIT_NEWPID(PID NEW_PID,float Param_P,float Param_I,float Param_D,float
  * @return NULL
  * @example: NULL
  */
-void PID_SET_TARGET(PID PID_CONTROL,float Param_Target);
+void PID_SET_TARGET(PID* PID_CONTROL,float Param_Target);
 
 /**
  * @description:            设置PID算法系数
@@ -64,7 +64,7 @@ void PID_SET_TARGET(PID PID_CONTROL,float Param_Target);
  * @return *
  * @example: 
  */
-void PID_SET_FACTORS(PID PID_CONTROL,float Param_P,float Param_I,float Param_D);
+void PID_SET_FACTORS(PID* PID_CONTROL,float Param_P,float Param_I,float Param_D);
 
 /**
  * @description:                计算PID控制算法结果并返回
@@ -73,7 +73,7 @@ void PID_SET_FACTORS(PID PID_CONTROL,float Param_P,float Param_I,float Param_D);
  * @return PID_OUTPUT           PID算法的结果
  * @example: NULL
  */
-float PID_CLAC_RESULT(PID PID_CONTROL,float CURRENT_INPUT);
+float PID_CLAC_RESULT(PID* PID_CONTROL,float CURRENT_INPUT);
 
 /**
  * @description:            逆初始化PID算法
@@ -81,6 +81,6 @@ float PID_CLAC_RESULT(PID PID_CONTROL,float CURRENT_INPUT);
  * @return NULL
  * @example: NULL
  */
-void PID_DEINIT_PID(PID PID_CONTROL);
+void PID_DEINIT_PID(PID* PID_CONTROL);
 
 #endif
