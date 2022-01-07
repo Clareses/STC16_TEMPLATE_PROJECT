@@ -272,7 +272,7 @@
               <MiscControls></MiscControls>
               <Define></Define>
               <Undefine></Undefine>
-              <IncludePath>..\CODES\BOARD;..\CODES\ALGORITHM;..\CODES\DRIVER;..\CODES\USERS</IncludePath>
+              <IncludePath>..\CODES\BOARD;..\CODES\ALGORITHM;..\CODES\DRIVER;..\CODES\USERS;..\CODES\ZF_lib</IncludePath>
             </VariousControls>
           </C251>
           <Ax51>
@@ -498,6 +498,71 @@
               <FileName>STEP_MOTOR.h</FileName>
               <FileType>5</FileType>
               <FilePath>..\CODES\DRIVER\STEP_MOTOR.h</FilePath>
+            </File>
+          </Files>
+        </Group>
+        <Group>
+          <GroupName>ZF_lib</GroupName>
+          <Files>
+            <File>
+              <FileName>SEEKFREE_18TFT.c</FileName>
+              <FileType>1</FileType>
+              <FilePath>..\CODES\ZF_lib\SEEKFREE_18TFT.c</FilePath>
+            </File>
+            <File>
+              <FileName>SEEKFREE_18TFT.h</FileName>
+              <FileType>5</FileType>
+              <FilePath>..\CODES\ZF_lib\SEEKFREE_18TFT.h</FilePath>
+            </File>
+            <File>
+              <FileName>SEEKFREE_FONT.c</FileName>
+              <FileType>1</FileType>
+              <FilePath>..\CODES\ZF_lib\SEEKFREE_FONT.c</FilePath>
+            </File>
+            <File>
+              <FileName>SEEKFREE_FONT.h</FileName>
+              <FileType>5</FileType>
+              <FilePath>..\CODES\ZF_lib\SEEKFREE_FONT.h</FilePath>
+            </File>
+            <File>
+              <FileName>SEEKFREE_PRINTF.c</FileName>
+              <FileType>1</FileType>
+              <FilePath>..\CODES\ZF_lib\SEEKFREE_PRINTF.c</FilePath>
+            </File>
+            <File>
+              <FileName>SEEKFREE_PRINTF.h</FileName>
+              <FileType>5</FileType>
+              <FilePath>..\CODES\ZF_lib\SEEKFREE_PRINTF.h</FilePath>
+            </File>
+            <File>
+              <FileName>zf_delay.c</FileName>
+              <FileType>1</FileType>
+              <FilePath>..\CODES\ZF_lib\zf_delay.c</FilePath>
+            </File>
+            <File>
+              <FileName>zf_delay.h</FileName>
+              <FileType>5</FileType>
+              <FilePath>..\CODES\ZF_lib\zf_delay.h</FilePath>
+            </File>
+            <File>
+              <FileName>zf_gpio.c</FileName>
+              <FileType>1</FileType>
+              <FilePath>..\CODES\ZF_lib\zf_gpio.c</FilePath>
+            </File>
+            <File>
+              <FileName>zf_gpio.h</FileName>
+              <FileType>5</FileType>
+              <FilePath>..\CODES\ZF_lib\zf_gpio.h</FilePath>
+            </File>
+            <File>
+              <FileName>zf_spi.c</FileName>
+              <FileType>1</FileType>
+              <FilePath>..\CODES\ZF_lib\zf_spi.c</FilePath>
+            </File>
+            <File>
+              <FileName>zf_spi.h</FileName>
+              <FileType>5</FileType>
+              <FilePath>..\CODES\ZF_lib\zf_spi.h</FilePath>
             </File>
           </Files>
         </Group>

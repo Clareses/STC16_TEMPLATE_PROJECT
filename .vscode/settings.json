@@ -1,5 +1,8 @@
 {
     "files.associations": {
-        "pwm.h": "c"
+        "pwm.h": "c",
+        "pid.h": "c",
+        "headfile.h": "c",
+        "step_motor.h": "c"
     }
 }
