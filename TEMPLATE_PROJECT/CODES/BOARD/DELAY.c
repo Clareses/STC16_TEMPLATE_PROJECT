@@ -3,8 +3,8 @@
  * @Author       : FZU Liao
  * @Date         : 2021-12-31 13:27:45
  * @LastEditors  : Liao
- * @LastEditTime : 2021-12-31 13:31:23
- * @FilePath     : \DELAY\DELAY.c
+ * @LastEditTime : 2022-01-07 22:50:09
+ * @FilePath     : \TEMPLATE_PROJECT\CODES\BOARD\DELAY.c
  * Copyright 2021 FZU Liao, All Rights Reserved. 
  */
 
@@ -14,7 +14,7 @@ uint16 nCLK_ms = 0;
 uint16 nCLK_us = 0;
 
 void DELAY_INIT(){
-    nCLK_ms = SYS_CLK/6000;
+    nCLK_ms = SYS_CLK/9000;
     nCLK_us = SYS_CLK/7000000;
 }
 
