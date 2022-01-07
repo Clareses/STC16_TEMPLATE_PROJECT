@@ -3,13 +3,15 @@
  * @Author       : FZU Liao
  * @Date         : 2021-12-28 22:01:20
  * @LastEditors  : Liao
- * @LastEditTime : 2022-01-01 21:24:03
- * @FilePath     : \COMMON.h
+ * @LastEditTime : 2022-01-07 12:37:08
+ * @FilePath     : \TEMPLATE_PROJECT\CODES\BOARD\COMMON.h
  * Copyright 2021 FZU Liao, All Rights Reserved. 
  */
 #ifndef __COMMON_H__
 #define __COMMON_H__
 #include "STC16Fxx.h"
+
+#define SYS_CLK 30000000
 
 //数据声明
 typedef unsigned char uint8;
