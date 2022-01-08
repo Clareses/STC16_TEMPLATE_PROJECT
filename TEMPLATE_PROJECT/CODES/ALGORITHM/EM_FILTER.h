@@ -1,21 +1,37 @@
 /*
- * @Description  : 滤波器定义
+ * @Description  : 滤波算法，采取去除一个最高值、一个最低值后再取平均的方式
  * @Author       : FZU Liao
- * @Date         : 2022-01-08 21:03:05
+ * @Date         : 2022-01-08 18:23:36
  * @LastEditors  : Liao
- * @LastEditTime : 2022-01-08 21:07:23
+ * @LastEditTime : 2022-01-08 18:45:33
  * @FilePath     : \TEMPLATE_PROJECT\CODES\ALGORITHM\EM_FILTER.h
  * Copyright 2022 FZU Liao, All Rights Reserved. 
  */
 
-//滤波可以采取以下方式
-//传入n次样本（通过参数传递进来），去除最大值和最小值，再对剩余的取平均
+#ifndef __EM_FILTER_H__
+#define __EM_FILTER_C__
 
-//初始化
+/**
+ * @description: 初始化滤波器
+ * @param *
+ * @return *
+ * @example: 
+ */
 void EM_FILTER_INIT();
 
-//添加一次样本
-void EM_FILTER_ADD_SAMPLE(int* SAMPLE_DATA_LIST);
+/**
+ * @description: 数据样本列表
+ * @param DATA_SAMPLE_LIST int*
+ * @return *
+ * @example: 
+ */
+void EM_FILTER_ADD_SAMPLE(int* DATA_SAMPLE_LIST);
 
-//对添加过的样本作计算返回后再清空已经记录的值
-void EM_FILTER_READ_RES(int* RES_SET);
+/**
+ * @description: 返回计算结果
+ * @param RES_SET int* 存储结果的数组
+ * @return
+ * @example: 
+ */
+void EM_FILTER_READ_RESULT(int* RES_SET);
+#endif
