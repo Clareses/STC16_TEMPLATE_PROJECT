@@ -35,12 +35,12 @@ void StepMotor_Control(uint16 CURRENT_SPEED,uint16 TARGET_SPEED){
     if(CURRENT_SPEED>0 && FLAG == OFF) FLAG = ON;
     if(CURRENT_SPEED == 0 && FLAG == ON){
         STEP_MOTOR_STOP(&MyStepMotor);
-        return ;    
+        return;    
     }
     //加上特判，如果目标值为0，直接停止所有输出
     if(TARGET_SPEED == 0){
         STEP_MOTOR_STOP(&MyStepMotor);
-        return ;
+        return;
     }
     if(CURRENT_SPEED - TARGET_SPEED > ERROR_RANGE){
         //进行判断，差值是否处于预定范围内，如果超出太多，直接调用刹车函数

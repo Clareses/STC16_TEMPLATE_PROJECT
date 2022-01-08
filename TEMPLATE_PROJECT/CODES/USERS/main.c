@@ -17,6 +17,7 @@ void SYS_INIT_ALL(){
 
 void main(){
     SYS_INIT_ALL();
+    MySYS_INIT();
     //UserCode---------------------------------------------------------------------------------------
 	TASK My_CAR_Routine;
     TASK_INIT_NEWTASK(&My_CAR_Routine,1,My_routineTask);
