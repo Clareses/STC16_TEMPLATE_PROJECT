@@ -3,7 +3,7 @@
  * @Author       : FZU Liao
  * @Date         : 2022-01-08 18:23:10
  * @LastEditors  : Liao
- * @LastEditTime : 2022-01-08 21:27:53
+ * @LastEditTime : 2022-01-08 23:21:21
  * @FilePath     : \TEMPLATE_PROJECT\CODES\ALGORITHM\EM_FILTER.c
  * Copyright 2022 FZU Liao, All Rights Reserved. 
  */
@@ -47,7 +47,7 @@ void EM_FILTER_READ_RESULT(int* RES_SET){
         if(times>=3)
             RES_SET[index] = (FILTER_LIST[index]-MAX_LIST[index]-MIN_LIST[index])/(times-2);
         else
-            RES_SET[index] = FILTER_LIST[0];
+            RES_SET[index] = FILTER_LIST[index];
     }
     EM_FILTER_INIT();
 }
