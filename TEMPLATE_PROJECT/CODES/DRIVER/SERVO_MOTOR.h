@@ -3,7 +3,7 @@
  * @Author       : FZU Liao
  * @Date         : 2022-01-03 14:34:30
  * @LastEditors  : Liao
- * @LastEditTime : 2022-01-06 20:02:43
+ * @LastEditTime : 2022-01-08 21:08:30
  * @FilePath     : \TEMPLATE_PROJECT\CODES\DRIVER\SERVO_MOTOR.h
  * Copyright 2022 FZU Liao, All Rights Reserved. 
  */
@@ -21,7 +21,7 @@ void SERVO_INIT_MOTOR();
 
 /**
  * @description: 设置伺服电机工作角度
- * @param Angle uint8 |Angle|<=10
+ * @param Angle uint8 
  * @return *
  * @example: 
  */
