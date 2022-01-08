@@ -1,49 +1,83 @@
 /*
- * @Description  : 步进电机模块
+ * @Description  : 步进电机控制封装
  * @Author       : FZU Liao
- * @Date         : 2022-01-07 23:02:40
+ * @Date         : 2022-01-03 15:48:15
  * @LastEditors  : Liao
- * @LastEditTime : 2022-01-07 23:13:16
+ * @LastEditTime : 2022-01-08 21:02:42
  * @FilePath     : \TEMPLATE_PROJECT\CODES\DRIVER\STEP_MOTOR.h
  * Copyright 2022 FZU Liao, All Rights Reserved. 
  */
 
 #ifndef __STEP_MOTOR_H__
+#define __STEP_MOTOR_H__
 
-#include "COMMON.h"
-#include "../BOARD/HEADFILE.h"
-
-#define STEP_PWM_OUTPUT_PIN PWMA_CH1P_P60
+#include "..\BOARD\PWM.h"
 
 typedef enum{
-    FORWARD = 0,
-    BACK = 1
-}STEPMOTOR_MODE;
+    STATUS_FORWARD,
+    STATUS_STOP,
+    STATUS_BACK
+}STEP_MOTOR_STATUS;
+
+#define STEP_MOTOR_MAX_DUTY 5000
+
+struct STEP_MOTOR_STRUCT{
+    PWM_CHANNEL_enum MOTOR_PWM_CHANNEL;
+    uint16 MOTOR_PWM_Duty;
+    STEP_MOTOR_STATUS STATUS;
+};
+
+typedef struct STEP_MOTOR_STRUCT STEP_MOTOR;
 
 /**
- * @description: 电机模块初始化
- * @param *
+ * @description: 初始化步进电机
+ * @param MOTOR STEP_MOTOR 步进电机指针
+ * @param ALI PWM_CHANNEL_enum PWM通道引脚
+ * @param BLI PWM_CHANNEL_enum PWM通道引脚
+ * @return NULL
+ * @example:
+ */
+void STEP_MOTOR_INIT(STEP_MOTOR* MOTOR,PWM_CHANNEL_enum MOTOR_PWM_CHANNEL);
+
+/**
+ * @description: 步进电机动力设置
+ * @param MOTOR STEP_MOTOR 电机指针
+ * @param Duty  动力系数,为0~10000
+ * @return NULL
+ * @example: 
+ */
+void STEP_MOTOR_SET_DUTY(STEP_MOTOR* MOTOR,uint16 Duty);
+
+/**
+ * @description: 控制前进供电
+ * @param MOTOR STEP_MOTOR 电机指针
+ * @return NULL
+ * @example: 
+ */
+void STEP_MOTOR_FORWARD(STEP_MOTOR* MOTOR);
+
+/**
+ * @description: 控制刹车
+ * @param MOTOR STEP_MOTOR 电机指针
+ * @return NULL
+ * @example: 
+ */
+void STEP_MOTOR_STOP(STEP_MOTOR* MOTOR);
+
+/**
+ * @description: 控制后退供电
+ * @param MOTOR STEP_MOTOR 电机指针
+ * @return NULL
+ * @example: 
+ */
+void STEP_MOTOR_BACK(STEP_MOTOR* MOTOR);
+
+/**
+ * @description: 读取电机状态
+ * @param MOTOR STEP_MOTOR*
  * @return *
  * @example: 
  */
-void STEP_MOTOR_INIT();
-
-/**
- * @description: 电机转速函数
- * @param duty PWM占空比，0~10000
- * @return *
- * @example: 
- */
-void STEP_MOTOR_DUTY(int duty);
-
-/**
- * @description: 
- * @param MODE STEPMOTOR_MODE
- *  可选值：
- *      FORWARD 为前进， BACK 为后退
- * @return *
- * @example: 
- */
-void STEP_MOTOR_MODE(STEPMOTOR_MODE MODE);
+STEP_MOTOR_STATUS STEP_MOTOR_READ_STATUS(STEP_MOTOR* MOTOR);
 
 #endif
