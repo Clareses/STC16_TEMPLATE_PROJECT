@@ -3,7 +3,7 @@
  * @Author       : FZU Liao
  * @Date         : 2022-01-06 16:58:07
  * @LastEditors  : Liao
- * @LastEditTime : 2022-01-08 18:13:16
+ * @LastEditTime : 2022-01-08 18:46:54
  * @FilePath     : \TEMPLATE_PROJECT\CODES\USERS\MyControlSys.h
  * Copyright 2022 FZU Liao, All Rights Reserved. 
  */
@@ -18,6 +18,7 @@
 #include "MyStepMotorPIDAdapter.h"
 #include "EM_SENSOR.h"
 #include "ENCODE_SENSOR.h"
+#include "EM_FILTER.h"
 
 int EM_DATA_LIST[4];
 
@@ -30,12 +31,13 @@ void MySYS_INIT(){
 }
 
 void My_routineTask(){
-    int ANGLE,TARGET_SPEED,CURRENT_SPEED;
-    //调用电磁传感器，获取数据后滤波
-    EM_READ_SENSOR(EM_DATA_LIST);
-    {
-        //滤波
+    int ANGLE,TARGET_SPEED,CURRENT_SPEED,index;
+    //调用电磁传感器，获取数据并滤波
+    for(index=0;index<6;index++){
+        EM_READ_SENSOR(EM_DATA_LIST);
+        EM_FILTER_ADD_SAMPLE(EM_DATA_LIST);
     }
+    EM_FILTER_READ_RESULT(EM_DATA_LIST);
     //滤波结束后的值，进行处理，数据传给舵机控制系统控制舵机，并接收一个返回值（舵机打角的角度）
     {
         ANGLE = Streering_Control(EM_DATA_LIST);
