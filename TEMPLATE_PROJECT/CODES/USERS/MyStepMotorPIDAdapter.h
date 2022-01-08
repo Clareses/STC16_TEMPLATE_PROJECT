@@ -3,7 +3,7 @@
  * @Author       : FZU Liao
  * @Date         : 2022-01-06 16:58:29
  * @LastEditors  : Liao
- * @LastEditTime : 2022-01-06 22:00:50
+ * @LastEditTime : 2022-01-08 18:01:20
  * @FilePath     : \TEMPLATE_PROJECT\CODES\USERS\MyStepMotorPIDAdapter.h
  * Copyright 2022 FZU Liao, All Rights Reserved. 
  */
@@ -13,6 +13,7 @@
 
 #include "PID.h"
 #include "COMMON.h"
+#include "TIMER.h"
 
 #define STEPMOTOR_Kp 1
 #define STEPMOTOR_Ki 1
@@ -21,12 +22,12 @@
 PID MySTEPMOTOR_PID;
 
 void MySTEPMOTOR_PID_INIT(){
-
+    PID_INIT_NEWPID(&MySTEPMOTOR_PID,STEPMOTOR_Kp,STEPMOTOR_Ki,STEPMOTOR_Kd,0,PID_INCREASE_MODE);
 }
 
 int Calc_StepMotor_PWM(uint16 CURRENT_SPEED,uint16 TARGET_SPEED){
-    //接收参数后调用PID，传入参数后得到PID计算出的结果
-    //转为PWM值，并返回
+    //接收参数后调用PID，传入参数后得到PID计算出的结果，转为PWM值，并返回
+    return PID_CLAC_RESULT(&MySTEPMOTOR_PID,CURRENT_SPEED);
 }
 
 

@@ -3,7 +3,7 @@
  * @Author       : FZU Liao
  * @Date         : 2022-01-03 15:48:15
  * @LastEditors  : Liao
- * @LastEditTime : 2022-01-04 23:04:24
+ * @LastEditTime : 2022-01-08 17:59:35
  * @FilePath     : \TEMPLATE_PROJECT\CODES\DRIVER\STEP_MOTOR.h
  * Copyright 2022 FZU Liao, All Rights Reserved. 
  */
@@ -13,10 +13,19 @@
 
 #include "..\BOARD\PWM.h"
 
+typedef enum{
+    STATUS_FORWARD,
+    STATUS_STOP,
+    STATUS_BACK
+}STEP_MOTOR_STATUS;
+
+#define STEP_MOTOR_MAX_DUTY 5000
+
 struct STEP_MOTOR_STRUCT{
     PWM_CHANNEL_enum MOTOR_ALI;
     PWM_CHANNEL_enum MOTOR_BLI;
     uint16 MOTOR_PWM_Duty;
+    STEP_MOTOR_STATUS STATUS;
 };
 
 typedef struct STEP_MOTOR_STRUCT STEP_MOTOR;
@@ -63,5 +72,13 @@ void STEP_MOTOR_STOP(STEP_MOTOR* MOTOR);
  * @example: 
  */
 void STEP_MOTOR_BACK(STEP_MOTOR* MOTOR);
+
+/**
+ * @description: 读取电机状态
+ * @param MOTOR STEP_MOTOR*
+ * @return *
+ * @example: 
+ */
+STEP_MOTOR_STATUS STEP_MOTOR_READ_STATUS(STEP_MOTOR* MOTOR);
 
 #endif

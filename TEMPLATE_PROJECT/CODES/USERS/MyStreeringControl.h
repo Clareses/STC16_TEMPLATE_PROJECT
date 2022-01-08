@@ -13,6 +13,8 @@
 
 #include "MyStreeringAdapter.h"
 
+void MyStreeringMotor_INIT();
+
 int Streering_Control(int* EM_Data){
     //接收传入的已经滤波过的电磁信号
     //利用电磁信号计算舵机大致摆角（调用PIDadapter算ERROR与目标值）
