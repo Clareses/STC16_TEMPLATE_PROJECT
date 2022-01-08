@@ -4,7 +4,8 @@
             "name": "Win32",
             "includePath": [
                 "${workspaceFolder}/**",
-                "${workspaceFolder}/TEMPLATE_PROJECT/CODES/DRIVER"
+                "${workspaceFolder}/TEMPLATE_PROJECT/CODES/DRIVER",
+                "${workspaceFolder}/TEMPLATE_PROJECT/CODES/ZF_lib"
             ],
             "defines": [
                 "_DEBUG",

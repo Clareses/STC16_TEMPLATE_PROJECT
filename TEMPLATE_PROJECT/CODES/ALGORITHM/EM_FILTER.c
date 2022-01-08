@@ -3,7 +3,7 @@
  * @Author       : FZU Liao
  * @Date         : 2022-01-08 18:23:10
  * @LastEditors  : Liao
- * @LastEditTime : 2022-01-08 23:21:21
+ * @LastEditTime : 2022-01-08 23:33:30
  * @FilePath     : \TEMPLATE_PROJECT\CODES\ALGORITHM\EM_FILTER.c
  * Copyright 2022 FZU Liao, All Rights Reserved. 
  */
@@ -14,6 +14,9 @@
 #define EM_MAX -100000
 #define EM_MIN  100000
 #define LIST_LENGTH 4
+
+#define MAX_RANGE 1
+#define MIN_RANGE 1
 
 int times;
 int FILTER_LIST[LIST_LENGTH];
@@ -34,6 +37,8 @@ void EM_FILTER_ADD_SAMPLE(int* DATA_SAMPLE_LIST){
     int index,temp;
     for(index=0;index<LIST_LENGTH;index++){
         temp = DATA_SAMPLE_LIST[index];
+        if(temp>MAX_RANGE) temp = MAX_RANGE;
+        if(temp<MIN_RANGE) temp = MIN_RANGE;
         MAX_LIST[index] = MAX_LIST[index]<temp ? temp : MAX_LIST[index];
         MIN_LIST[index] = MIN_LIST[index]>temp ? temp : MIN_LIST[index];
         FILTER_LIST[index] += temp;
