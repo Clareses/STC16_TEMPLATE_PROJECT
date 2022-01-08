@@ -1,0 +1,122 @@
+C251 COMPILER V5.60.0,  TASK                                                               04/01/22  11:56:16  PAGE 1   
+
+
+C251 COMPILER V5.60.0, COMPILATION OF MODULE TASK
+OBJECT MODULE PLACED IN ..\Output\TASK.obj
+COMPILER INVOKED BY: F:\ProgramData\keil5\C251\BIN\C251.EXE ..\CODES\BOARD\TASK.c LARGE INTR2 BROWSE INCDIR(..\CODES\BOA
+                    -RD;..\CODES\ALGORITHM;..\CODES\DRIVER;..\CODES\USERS) DEBUG PRINT(.\Listings\TASK.lst) OBJECT(..\Output\TASK.obj) 
+
+stmt  level    source
+
+    1          /*
+    2           * @Description  : 任务系统实现
+    3           * @Author       : FZU Liao
+    4           * @Date         : 2022-01-01 21:20:45
+    5           * @LastEditors  : Liao
+    6           * @LastEditTime : 2022-01-03 11:23:59
+    7           * @FilePath     : \BOARD\TASK.c
+    8           * Copyright 2022 FZU Liao, All Rights Reserved. 
+    9           */
+   10          
+   11          #include "TIMER.h"
+   12          #include "TASK.h"
+   13          
+   14          struct TASK* TaskList[TASK_MAX_N];
+   15          
+   16          void Task_Excute(struct TASK* task){
+   17   1          if(task == 0) return;
+   18   1          task->COUNTER++;
+   19   1          task->COUNTER%=task->THRESHOLD;
+   20   1          if(task->COUNTER==task->THRESHOLD-1) (*task->FUNC)();
+   21   1      }
+   22          
+   23          void TASK_STATE_UPDATE(){
+   24   1          int i;
+   25   1          for(i=0;i<TASK_MAX_N;i++){
+   26   2              Task_Excute(TaskList[i]);
+   27   2          }
+   28   1      }
+   29          
+   30          void TASK_INIT_TASKSYS(){
+   31   1          TIMER_ADDRESS_INIT();
+   32   1          TIMER_INIT_TIMERx(Timer0,1,T,1,0,TASK_STATE_UPDATE);
+   33   1          TIMER_ENABLE(Timer0);
+   34   1      }
+   35          
+   36          void TASK_INIT_NEWTASK(struct TASK* task,uint16 Threshold,void (*func)()){
+*** WARNING C52 IN LINE 36 OF ..\CODES\BOARD\TASK.c: use of undefined type 'Task'
+*** WARNING C57 IN LINE 36 OF ..\CODES\BOARD\TASK.c: parameter 1: different from declaration
+   37   1          //memset(task,0,sizeof(task));
+   38   1          task->COUNTER = 0;
+   39   1          task->THRESHOLD = Threshold;
+   40   1          task->FUNC = func;
+   41   1      }
+   42          
+   43          void TASK_SETID(uint8 ID,struct TASK* task){
+   44   1          task->ID=ID;
+   45   1      }
+   46          
+   47          void TASK_SETFUNC(void (*func)(),struct TASK* task){
+*** WARNING C52 IN LINE 47 OF ..\CODES\BOARD\TASK.c: use of undefined type 'Task'
+*** WARNING C57 IN LINE 47 OF ..\CODES\BOARD\TASK.c: parameter 2: different from declaration
+   48   1          task->FUNC=func;
+   49   1      }
+   50          
+   51          void TASK_ADD_TASK(struct TASK* task){
+*** WARNING C52 IN LINE 51 OF ..\CODES\BOARD\TASK.c: use of undefined type 'Task'
+*** WARNING C57 IN LINE 51 OF ..\CODES\BOARD\TASK.c: parameter 1: different from declaration
+   52   1          int i;
+C251 COMPILER V5.60.0,  TASK                                                               04/01/22  11:56:16  PAGE 2   
+
+   53   1          for (i = 0; i < TASK_MAX_N; i++) {
+   54   2              if(TaskList[i]==0){
+   55   3                  TaskList[i]=task;
+   56   3                  TASK_SETID(i,task);
+*** WARNING C188 IN LINE 56 OF ..\CODES\BOARD\TASK.c: 'parameter 1': value truncated
+   57   3                  return ;
+   58   3              }
+   59   2          }
+   60   1      }
+   61          
+   62          void TASK_DELETE_TASK(struct TASK* task){
+*** WARNING C52 IN LINE 62 OF ..\CODES\BOARD\TASK.c: use of undefined type 'Task'
+*** WARNING C57 IN LINE 62 OF ..\CODES\BOARD\TASK.c: parameter 1: different from declaration
+   63   1          TaskList[task->ID]=0;
+   64   1      }
+   65          
+   66          void TASK_PAUSE_TASKSYS(){
+   67   1          TIMER_DISABLE(Timer0);
+   68   1      }
+   69          
+   70          void TASK_DEINIT_TASKSYS(){
+   71   1          int i;
+   72   1          for (i = 0; i < TASK_MAX_N; i++) {
+   73   2              TaskList[i] = 0;
+   74   2          }
+   75   1          TIMER_DISABLE(Timer0);
+   76   1      }
+   77          
+
+
+Module Information          Static   Overlayable
+------------------------------------------------
+  code size            =       289     ------
+  ecode size           =    ------     ------
+  data size            =    ------     ------
+  idata size           =    ------     ------
+  pdata size           =    ------     ------
+  xdata size           =        16     ------
+  xdata-const size     =    ------     ------
+  edata size           =    ------     ------
+  bit size             =    ------     ------
+  ebit size            =    ------     ------
+  bitaddressable size  =    ------     ------
+  ebitaddressable size =    ------     ------
+  far data size        =    ------     ------
+  huge data size       =    ------     ------
+  const size           =    ------     ------
+  hconst size          =    ------     ------
+End of Module Information.
+
+
+C251 COMPILATION COMPLETE.  9 WARNING(S),  0 ERROR(S)

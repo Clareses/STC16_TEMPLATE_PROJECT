@@ -1,0 +1,102 @@
+C251 COMPILER V5.60.0,  PID                                                                04/01/22  11:56:16  PAGE 1   
+
+
+C251 COMPILER V5.60.0, COMPILATION OF MODULE PID
+OBJECT MODULE PLACED IN ..\Output\PID.obj
+COMPILER INVOKED BY: F:\ProgramData\keil5\C251\BIN\C251.EXE ..\CODES\ALGORITHM\PID.c LARGE INTR2 BROWSE INCDIR(..\CODES\
+                    -BOARD;..\CODES\ALGORITHM;..\CODES\DRIVER;..\CODES\USERS) DEBUG PRINT(.\Listings\PID.lst) OBJECT(..\Output\PID.obj) 
+
+stmt  level    source
+
+    1          /*
+    2           * @Description  : PID控制算法实现
+    3           * @Author       : FZU Liao
+    4           * @Date         : 2022-01-02 20:19:32
+    5           * @LastEditors  : Liao
+    6           * @LastEditTime : 2022-01-03 11:24:13
+    7           * @FilePath     : \ALGORITHM\PID.c
+    8           * Copyright 2022 FZU Liao, All Rights Reserved. 
+    9           */
+   10          
+   11          #include "PID.h"
+   12          #include "stdio.h"
+   13          
+   14          void PID_SET_TARGET(PID PID_CONTROL,float Param_Target){
+   15   1          PID_CONTROL->TARGET_VALUE = Param_Target;
+   16   1      }
+   17          
+   18          void PID_SET_FACTORS(PID PID_CONTROL,float Param_P,float Param_I,float Param_D){
+   19   1          PID_CONTROL->FACTOR_Proportional = Param_P;
+   20   1          PID_CONTROL->FACTOR_Integral     = Param_I;
+   21   1          PID_CONTROL->FACTOR_Differential = Param_D;
+   22   1      }
+   23          
+   24          float PID_CLAC_RESULT(PID PID_CONTROL,float CURRENT_INPUT){
+   25   1          float PID_OUTPUT;
+   26   1          float ERROR,d_ERROR;
+   27   1          if(PID_CONTROL->PID_X_MODE == PID_REALIZE_MODE){
+   28   2              ERROR = PID_CONTROL->TARGET_VALUE - CURRENT_INPUT;
+   29   2              PID_CONTROL->PID_SUM_ERROR += ERROR;
+   30   2              d_ERROR = PID_CONTROL->PID_CURRENT_ERROR - PID_CONTROL->PID_LAST_ERROR;
+   31   2              PID_CONTROL->PID_LAST_ERROR    = PID_CONTROL->PID_CURRENT_ERROR;
+   32   2              PID_CONTROL->PID_CURRENT_ERROR = ERROR;
+   33   2              PID_OUTPUT = (
+   34   2                  PID_CONTROL->FACTOR_Proportional*ERROR +
+   35   2                  PID_CONTROL->FACTOR_Integral*PID_CONTROL->PID_SUM_ERROR + 
+   36   2                  PID_CONTROL->FACTOR_Differential*d_ERROR
+   37   2              );
+   38   2          }else{
+   39   2              ERROR = PID_CONTROL->TARGET_VALUE - CURRENT_INPUT;
+   40   2              d_ERROR = ERROR - 2*PID_CONTROL->PID_CURRENT_ERROR + PID_CONTROL->PID_LAST_ERROR;
+   41   2              PID_OUTPUT = (
+   42   2                  PID_CONTROL->FACTOR_Proportional*(ERROR-PID_CONTROL->PID_CURRENT_ERROR) +
+   43   2                  PID_CONTROL->FACTOR_Integral*ERROR + 
+   44   2                  PID_CONTROL->FACTOR_Differential*d_ERROR
+   45   2              );
+   46   2              PID_CONTROL->PID_LAST_ERROR = PID_CONTROL->PID_CURRENT_ERROR;
+   47   2              PID_CONTROL->PID_CURRENT_ERROR = ERROR;
+   48   2          }
+   49   1          return PID_OUTPUT;
+   50   1      }
+   51          
+   52          void PID_INIT_NEWPID(PID NEW_PID,float Param_P,float Param_I,float Param_D,float Param_Target,PID_CONTROL
+             -_MODE PID_MODE){
+   53   1          //memset(NEW_PID,0,sizeof(struct PID_CONTROL_STRUCT));
+   54   1          NEW_PID->PID_X_MODE = PID_MODE;
+   55   1          NEW_PID->PID_CURRENT_ERROR  = 0;
+   56   1          NEW_PID->PID_LAST_ERROR     = 0;
+   57   1          NEW_PID->PID_SUM_ERROR      = 0;
+C251 COMPILER V5.60.0,  PID                                                                04/01/22  11:56:16  PAGE 2   
+
+   58   1          PID_SET_FACTORS(NEW_PID,Param_P,Param_I,Param_D);
+   59   1          PID_SET_TARGET(NEW_PID,Param_Target);
+   60   1      }
+   61          
+   62          void PID_DEINIT_PID(PID PID_CONTROL){
+   63   1          //free(PID_CONTROL);
+   64   1      }
+*** WARNING C47 IN LINE 62 OF ..\CODES\ALGORITHM\PID.c: 'PID_CONTROL': unreferenced parameter
+
+
+Module Information          Static   Overlayable
+------------------------------------------------
+  code size            =       463     ------
+  ecode size           =    ------     ------
+  data size            =    ------     ------
+  idata size           =    ------     ------
+  pdata size           =    ------     ------
+  xdata size           =    ------         22
+  xdata-const size     =    ------     ------
+  edata size           =    ------     ------
+  bit size             =    ------     ------
+  ebit size            =    ------     ------
+  bitaddressable size  =    ------     ------
+  ebitaddressable size =    ------     ------
+  far data size        =    ------     ------
+  huge data size       =    ------     ------
+  const size           =    ------     ------
+  hconst size          =    ------     ------
+End of Module Information.
+
+
+C251 COMPILATION COMPLETE.  1 WARNING(S),  0 ERROR(S)

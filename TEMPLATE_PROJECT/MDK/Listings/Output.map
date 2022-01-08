@@ -1,0 +1,12 @@
+L251 LINKER/LOCATER V4.66.93.0                                                          01/03/2022  11:36:04  PAGE 1
+
+
+L251 LINKER/LOCATER V4.66.93.0, INVOKED BY:
+F:\PROGRAMDATA\KEIL5\C251\BIN\L251.EXE ..\ADC.obj, ..\BOARD.obj, ..\DELAY.obj, ..\EXINT.obj, ..\GPIO.obj, ..\NVIC.obj, .
+>> .\PWM.obj, ..\TASK.obj, ..\TIMER.obj, ..\main.obj, ..\PID.obj TO ..\Output PRINT (.\Listings\Output.map) CASE CLASSES
+>>  (EDATA (0X0-0X1FFF), HDATA (0X0-0X1FFF))
+
+
+*** ERROR L211: I/O ERROR ON OUTPUT FILE:
+    EXCEPTION 0029H: ACCESS TO FILE DENIED
+    FILE: ..\Output

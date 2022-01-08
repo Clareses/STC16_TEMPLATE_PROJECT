@@ -1,0 +1,130 @@
+C251 COMPILER V5.60.0,  EXINT                                                              04/01/22  11:56:16  PAGE 1   
+
+
+C251 COMPILER V5.60.0, COMPILATION OF MODULE EXINT
+OBJECT MODULE PLACED IN ..\Output\EXINT.obj
+COMPILER INVOKED BY: F:\ProgramData\keil5\C251\BIN\C251.EXE ..\CODES\BOARD\EXINT.c LARGE INTR2 BROWSE INCDIR(..\CODES\BO
+                    -ARD;..\CODES\ALGORITHM;..\CODES\DRIVER;..\CODES\USERS) DEBUG PRINT(.\Listings\EXINT.lst) OBJECT(..\Output\EXINT.obj) 
+
+stmt  level    source
+
+    1          /*
+    2           * @Description  : 外部中断封装实现
+    3           * @Author       : FZU Liao
+    4           * @Date         : 2021-12-28 22:26:02
+    5           * @LastEditors  : Liao
+    6           * @LastEditTime : 2021-12-31 12:52:57
+    7           * @FilePath     : \EXINT\EXINT.c
+    8           * Copyright 2021 FZU Liao, All Rights Reserved. 
+    9           */
+   10          
+   11          #include "EXINT.h"
+   12          
+   13          #define ENABLE_REGISTER0 IE
+   14          #define ENABLE_REGISTER1 INTCLKO
+   15          
+   16          //外部中断结构体定义
+   17          struct EXINT_TYPE{
+   18              uint8 ENABLE_offset;
+   19              void (*EXINT_FUNC)();
+   20          };
+   21          
+   22          struct EXINT_TYPE EXINT_list[5];
+   23          
+   24          void EXINT_ADDRESS_INIT(){
+   25   1          EXINT_list[0].ENABLE_offset=0;
+   26   1          EXINT_list[1].ENABLE_offset=2;
+   27   1          EXINT_list[2].ENABLE_offset=4;
+   28   1          EXINT_list[3].ENABLE_offset=5;
+   29   1          EXINT_list[4].ENABLE_offset=6;
+   30   1          EXINT_list[0].EXINT_FUNC=0;
+   31   1          EXINT_list[1].EXINT_FUNC=0;
+   32   1          EXINT_list[2].EXINT_FUNC=0;
+   33   1          EXINT_list[3].EXINT_FUNC=0;
+   34   1          EXINT_list[4].EXINT_FUNC=0;
+   35   1      }
+   36          
+   37          void EXINT_INIT(EXINTn_enum EXINTn,void (*func)(),EXINT_MODE_enum EXT_mode){
+   38   1          if(EXINTn==0) IT0=EXT_mode;
+   39   1          if(EXINTn==1) IT1=EXT_mode;
+   40   1          EXINT_SET_FUNC(EXINTn,func);
+   41   1      }
+   42          
+   43          void EXINT_SET_FUNC(EXINTn_enum EXINTn,void (*func)()){
+   44   1          EXINT_list[EXINTn].EXINT_FUNC=func;
+   45   1      }
+   46          
+   47          void EXINT_ENABLE(EXINTn_enum EXINTn){
+   48   1          if(EXINTn<=1) 
+   49   1              ENABLE_REGISTER0 |= (0x01<<EXINT_list[EXINTn].ENABLE_offset);
+   50   1          else 
+   51   1              ENABLE_REGISTER1 |= (0x01<<EXINT_list[EXINTn].ENABLE_offset);
+   52   1      }
+   53          
+   54          void EXINT_DISABLE(EXINTn_enum EXINTn){
+   55   1          if(EXINTn<=1) 
+   56   1              ENABLE_REGISTER0 &= ~(0x01<<EXINT_list[EXINTn].ENABLE_offset);
+   57   1          else
+   58   1              ENABLE_REGISTER1 &= ~(0x01<<EXINT_list[EXINTn].ENABLE_offset);
+C251 COMPILER V5.60.0,  EXINT                                                              04/01/22  11:56:16  PAGE 2   
+
+   59   1      }
+   60          
+   61          void EXT0_Routine() interrupt 0
+   62          {
+   63   1          if(EXINT_list[0].EXINT_FUNC!=0)
+   64   1              (*EXINT_list[0].EXINT_FUNC)();
+   65   1          EXT0_CLEAR_FLAG;
+   66   1      }
+   67          
+   68          void EXT1_Routine() interrupt 2
+   69          {
+   70   1          if(EXINT_list[1].EXINT_FUNC!=0)
+   71   1              (*EXINT_list[1].EXINT_FUNC)();
+   72   1          EXT1_CLEAR_FLAG;
+   73   1      }
+   74          
+   75          void EXT2_Routine() interrupt 10
+   76          {
+   77   1          if(EXINT_list[2].EXINT_FUNC!=0)
+   78   1              (*EXINT_list[2].EXINT_FUNC)();
+   79   1          EXT2_CLEAR_FLAG;
+   80   1      }
+   81          
+   82          void EXT3_Routine() interrupt 11
+   83          {
+   84   1          if(EXINT_list[3].EXINT_FUNC!=0)
+   85   1              (*EXINT_list[3].EXINT_FUNC)();
+   86   1          EXT3_CLEAR_FLAG;
+   87   1      }
+   88          
+   89          void EXT4_Routine() interrupt 16
+   90          {
+   91   1          if(EXINT_list[4].EXINT_FUNC!=0)
+   92   1              (*EXINT_list[4].EXINT_FUNC)();
+   93   1          EXT4_CLEAR_FLAG;
+   94   1      }
+
+
+Module Information          Static   Overlayable
+------------------------------------------------
+  code size            =       618     ------
+  ecode size           =    ------     ------
+  data size            =    ------     ------
+  idata size           =    ------     ------
+  pdata size           =    ------     ------
+  xdata size           =        15     ------
+  xdata-const size     =    ------     ------
+  edata size           =    ------     ------
+  bit size             =    ------     ------
+  ebit size            =    ------     ------
+  bitaddressable size  =    ------     ------
+  ebitaddressable size =    ------     ------
+  far data size        =    ------     ------
+  huge data size       =    ------     ------
+  const size           =    ------     ------
+  hconst size          =    ------     ------
+End of Module Information.
+
+
+C251 COMPILATION COMPLETE.  0 WARNING(S),  0 ERROR(S)

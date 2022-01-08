@@ -1,0 +1,59 @@
+C251 COMPILER V5.60.0,  main                                                               04/01/22  11:56:16  PAGE 1   
+
+
+C251 COMPILER V5.60.0, COMPILATION OF MODULE main
+OBJECT MODULE PLACED IN ..\Output\main.obj
+COMPILER INVOKED BY: F:\ProgramData\keil5\C251\BIN\C251.EXE ..\CODES\USERS\main.c LARGE INTR2 BROWSE INCDIR(..\CODES\BOA
+                    -RD;..\CODES\ALGORITHM;..\CODES\DRIVER;..\CODES\USERS) DEBUG PRINT(.\Listings\main.lst) OBJECT(..\Output\main.obj) 
+
+stmt  level    source
+
+    1          #include "HEADFILE.h"
+    2          #include "STEP_MOTOR.h"
+    3          
+    4          void SYS_INIT_ALL(){
+    5   1              DELAY_INIT();
+    6   1          EXINT_ADDRESS_INIT();
+    7   1          TIMER_ADDRESS_INIT();
+    8   1          IQR_Enable_ALL();
+    9   1          //TASK_INIT_TASKSYS();  //多任务系统,开启则占用定时器TIMER0
+   10   1      }
+   11          
+   12          //UserCode-------------------------------------------------------------------------------------------
+   13          
+   14          
+   15          
+   16          //UserCode-------------------------------------------------------------------------------------------
+   17          
+   18          void main(){
+   19   1          SYS_INIT_ALL();
+   20   1          //UserCode---------------------------------------------------------------------------------------
+   21   1              STEP_MOTOR_INIT();
+*** WARNING C96 IN LINE 21 OF ..\CODES\USERS\main.c: 'STEP_MOTOR_INIT': too few actual parameters
+   22   1              
+   23   1          //UserCode---------------------------------------------------------------------------------------
+   24   1      }
+
+
+Module Information          Static   Overlayable
+------------------------------------------------
+  code size            =        18     ------
+  ecode size           =    ------     ------
+  data size            =    ------     ------
+  idata size           =    ------     ------
+  pdata size           =    ------     ------
+  xdata size           =    ------     ------
+  xdata-const size     =    ------     ------
+  edata size           =    ------     ------
+  bit size             =    ------     ------
+  ebit size            =    ------     ------
+  bitaddressable size  =    ------     ------
+  ebitaddressable size =    ------     ------
+  far data size        =    ------     ------
+  huge data size       =    ------     ------
+  const size           =    ------     ------
+  hconst size          =    ------     ------
+End of Module Information.
+
+
+C251 COMPILATION COMPLETE.  1 WARNING(S),  0 ERROR(S)
