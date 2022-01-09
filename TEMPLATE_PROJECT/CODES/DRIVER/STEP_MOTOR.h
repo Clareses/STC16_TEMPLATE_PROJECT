@@ -81,4 +81,12 @@ void STEP_MOTOR_BACK(STEP_MOTOR* MOTOR);
  */
 STEP_MOTOR_STATUS STEP_MOTOR_READ_STATUS(STEP_MOTOR* MOTOR);
 
+/**
+ * @description: 返回当前PWM占空比
+ * @param MOTOR STEP_MOTOR*
+ * @return *
+ * @example: 
+ */
+uint32 STEP_MOTOR_GET_DUTY(STEP_MOTOR* MOTOR);
+
 #endif
