@@ -3,7 +3,7 @@
  * @Author       : FZU Liao
  * @Date         : 2022-01-06 16:58:29
  * @LastEditors  : Liao
- * @LastEditTime : 2022-01-09 23:31:45
+ * @LastEditTime : 2022-01-09 23:38:41
  * @FilePath     : \TEMPLATE_PROJECT\CODES\USERS\MyStepMotorPIDAdapter.h
  * Copyright 2022 FZU Liao, All Rights Reserved. 
  */
@@ -26,6 +26,8 @@ void MySTEPMOTOR_PID_INIT(){
 }
 
 int Calc_StepMotor_PWM(uint16 CURRENT_SPEED,uint16 TARGET_SPEED){
+    //设置目标参数
+    PID_SET_TARGET(&MySTEPMOTOR_PID,TARGET_SPEED);
     //接收参数后调用PID，传入参数后得到PID计算出的结果，转为PWM值，并返回
     return PID_CALC_RESULT(&MySTEPMOTOR_PID,CURRENT_SPEED);
 }
