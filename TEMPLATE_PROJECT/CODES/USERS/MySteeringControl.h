@@ -22,9 +22,8 @@ void MyStreeringMotor_INIT(){
 float Streering_Control(int* EM_Data){
     float CURRENT_INPUT;
     float ANGLE;
-    float temp;
     //接收传入的已经滤波过的电磁信号
-    CURRENT_INPUT = EM_CACL_POS_RES(EM_Data);
+    CURRENT_INPUT = EM_CALC_POS_RES(EM_Data);
     //利用电磁信号计算舵机大致摆角（调用PIDadapter算ERROR与目标值）
     ANGLE = Calc_SteeringMotor_ANGLE(CURRENT_INPUT);
     //输出到舵机

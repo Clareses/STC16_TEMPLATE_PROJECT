@@ -18,11 +18,11 @@ const uint32 PWM_CCER_ADDR[] = {0x7efecc, 0x7efecd, 0x7efeec ,0x7efeed};
 const uint32  PWM_ARR_ADDR[] = {0x7efed2,0x7efef2};
 
 void PWM_INIT_PWMCHANNEL(PWM_CHANNEL_enum PWMn_CHx_Pin,uint32 Frequecy, uint16 Duty){
-	if(Duty>10000) Duty = 10000;	//限幅
 	uint16 DUTY_RATIO;              //占空比
 	uint16 CYCLE_TIME;              //周期
 	uint16 FREQUENCY_DIVIDER = 0;   //分频
 
+	if(Duty>10000) Duty = 10000;	//限幅
     P_SW2 |= 0x80;
 
 	if(Frequecy>500){
@@ -67,10 +67,10 @@ void PWM_INIT_PWMCHANNEL(PWM_CHANNEL_enum PWMn_CHx_Pin,uint32 Frequecy, uint16 D
 }
 
 void PWM_SET_DUTY(PWM_CHANNEL_enum PWMn_CHx_Pin,uint16 Duty){
-	if(Duty>10000) Duty=10000;
     uint16 DUTY_RATIO;
 	uint16 ARR = ((*(unsigned char volatile far *) (PWM_ARR_ADDR[PWMn_CHx_Pin>>6]))<<8) 
                  |(*(unsigned char volatile far *) (PWM_ARR_ADDR[PWMn_CHx_Pin>>6] + 1 ));
+	if(Duty>10000) Duty=10000;
 	DUTY_RATIO = ARR * ((float)Duty/PWM_MAX_DUTY);
 	(*(unsigned char volatile far *) (PWM_CCR_ADDR[PWMn_CHx_Pin>>4]))	  = DUTY_RATIO>>8;	
 	(*(unsigned char volatile far *) (PWM_CCR_ADDR[PWMn_CHx_Pin>>4] + 1)) = (uint8)DUTY_RATIO;
