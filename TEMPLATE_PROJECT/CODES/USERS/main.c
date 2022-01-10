@@ -15,7 +15,8 @@ void main(){
     SYS_INIT_ALL();
     lcd_init();
     while(1){
-        lcd_clear(BLUE);
+        lcd_clear(WHITE);
         lcd_showchar(1,1,'a');  
+        DELAY_ms(1000);
     }
 }

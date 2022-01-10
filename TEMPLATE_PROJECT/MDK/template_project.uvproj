@@ -439,6 +439,31 @@
               <FileType>1</FileType>
               <FilePath>..\CODES\USERS\main.c</FilePath>
             </File>
+            <File>
+              <FileName>MyControlSys.h</FileName>
+              <FileType>5</FileType>
+              <FilePath>..\CODES\USERS\MyControlSys.h</FilePath>
+            </File>
+            <File>
+              <FileName>MySteeringControl.h</FileName>
+              <FileType>5</FileType>
+              <FilePath>..\CODES\USERS\MySteeringControl.h</FilePath>
+            </File>
+            <File>
+              <FileName>MySteeringPIDAdapter.h</FileName>
+              <FileType>5</FileType>
+              <FilePath>..\CODES\USERS\MySteeringPIDAdapter.h</FilePath>
+            </File>
+            <File>
+              <FileName>MyStepMotorControl.h</FileName>
+              <FileType>5</FileType>
+              <FilePath>..\CODES\USERS\MyStepMotorControl.h</FilePath>
+            </File>
+            <File>
+              <FileName>MyStepMotorPIDAdapter.h</FileName>
+              <FileType>5</FileType>
+              <FilePath>..\CODES\USERS\MyStepMotorPIDAdapter.h</FilePath>
+            </File>
           </Files>
         </Group>
         <Group>
