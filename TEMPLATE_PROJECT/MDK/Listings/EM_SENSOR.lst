@@ -1,0 +1,62 @@
+C251 COMPILER V5.60.0,  EM_SENSOR                                                          10/01/22  23:01:37  PAGE 1   
+
+
+C251 COMPILER V5.60.0, COMPILATION OF MODULE EM_SENSOR
+OBJECT MODULE PLACED IN ..\Output\EM_SENSOR.obj
+COMPILER INVOKED BY: F:\ProgramData\keil5\C251\BIN\C251.EXE ..\CODES\DRIVER\EM_SENSOR.c LARGE INTR2 BROWSE INCDIR(..\COD
+                    -ES\BOARD;..\CODES\ALGORITHM;..\CODES\DRIVER;..\CODES\USERS;..\CODES\ZF_lib) DEBUG PRINT(.\Listings\EM_SENSOR.lst) OBJECT
+                    -(..\Output\EM_SENSOR.obj) 
+
+stmt  level    source
+
+    1          /*
+    2           * @Description  : 电磁传感器实现
+    3           * @Author       : FZU Liao
+    4           * @Date         : 2022-01-03 15:31:32
+    5           * @LastEditors  : Liao
+    6           * @LastEditTime : 2022-01-08 17:24:14
+    7           * @FilePath     : \TEMPLATE_PROJECT\CODES\DRIVER\EM_SENSOR.c
+    8           * Copyright 2022 FZU Liao, All Rights Reserved. 
+    9           */
+   10          #include "EM_SENSOR.h"
+   11          #include "..\BOARD\ADC.h"
+   12          
+   13          void EM_INIT_SENSOR(){
+   14   1          ADC_INIT(ADC_CLK_MODE6);
+   15   1          ADC_ENABLE();
+   16   1      }
+   17          
+   18          void EM_READ_SENSOR(int* DATA_LIST){
+   19   1          DATA_LIST[0] = ADC_READ(ADC_CHANNEL_P00);
+   20   1          DATA_LIST[1] = ADC_READ(ADC_CHANNEL_P01);
+   21   1          DATA_LIST[2] = ADC_READ(ADC_CHANNEL_P05);
+   22   1          DATA_LIST[3] = ADC_READ(ADC_CHANNEL_P06);
+   23   1      }
+   24          
+   25          void EM_DEINIT_SENSOR(){
+   26   1          ADC_DISABLE();
+   27   1      }
+
+
+Module Information          Static   Overlayable
+------------------------------------------------
+  code size            =        63     ------
+  ecode size           =    ------     ------
+  data size            =    ------     ------
+  idata size           =    ------     ------
+  pdata size           =    ------     ------
+  xdata size           =    ------     ------
+  xdata-const size     =    ------     ------
+  edata size           =    ------     ------
+  bit size             =    ------     ------
+  ebit size            =    ------     ------
+  bitaddressable size  =    ------     ------
+  ebitaddressable size =    ------     ------
+  far data size        =    ------     ------
+  huge data size       =    ------     ------
+  const size           =    ------     ------
+  hconst size          =    ------     ------
+End of Module Information.
+
+
+C251 COMPILATION COMPLETE.  0 WARNING(S),  0 ERROR(S)

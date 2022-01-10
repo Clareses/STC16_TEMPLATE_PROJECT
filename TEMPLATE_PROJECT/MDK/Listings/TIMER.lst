@@ -1,0 +1,289 @@
+C251 COMPILER V5.60.0,  TIMER                                                              10/01/22  23:01:36  PAGE 1   
+
+
+C251 COMPILER V5.60.0, COMPILATION OF MODULE TIMER
+OBJECT MODULE PLACED IN ..\Output\TIMER.obj
+COMPILER INVOKED BY: F:\ProgramData\keil5\C251\BIN\C251.EXE ..\CODES\BOARD\TIMER.c LARGE INTR2 BROWSE INCDIR(..\CODES\BO
+                    -ARD;..\CODES\ALGORITHM;..\CODES\DRIVER;..\CODES\USERS;..\CODES\ZF_lib) DEBUG PRINT(.\Listings\TIMER.lst) OBJECT(..\Outpu
+                    -t\TIMER.obj) 
+
+stmt  level    source
+
+    1          #include "TIMER.h"
+    2          
+    3          struct TIMER_NORMAL_TYPE TIMER_NORMAL_list[5];
+    4          struct TIMER_T01_TYPE TIMER_T01_list[2];
+    5          struct TIMER_T34_TYPE TIMER_T34_list[2];
+    6          
+    7          void TIMER_ADDRESS_INIT(){
+    8   1          TIMER_NORMAL_list[0].TIMER_ID       = 0;
+    9   1          TIMER_NORMAL_list[0].ENABLE_bit     = 0x10;
+   10   1          TIMER_NORMAL_list[0].F_Divider_bit  = 0x80;
+   11   1          TIMER_NORMAL_list[0].TorC_bit       = 0x04;
+   12   1          TIMER_NORMAL_list[0].TnCLKO_bit     = 0x01; 
+   13   1          TIMER_NORMAL_list[0].TIMER_INT_FUNC = 0;
+   14   1      
+   15   1          TIMER_NORMAL_list[1].TIMER_ID       = 1;
+   16   1          TIMER_NORMAL_list[1].ENABLE_bit     = 0x40;
+   17   1          TIMER_NORMAL_list[1].F_Divider_bit  = 0x40;
+   18   1          TIMER_NORMAL_list[1].TorC_bit       = 0x40;
+   19   1          TIMER_NORMAL_list[1].TnCLKO_bit     = 0x02; 
+   20   1          TIMER_NORMAL_list[1].TIMER_INT_FUNC = 0;
+   21   1      
+   22   1          TIMER_NORMAL_list[2].TIMER_ID       = 2;
+   23   1          TIMER_NORMAL_list[2].ENABLE_bit     = 0x10;
+   24   1          TIMER_NORMAL_list[2].F_Divider_bit  = 0x04;
+   25   1          TIMER_NORMAL_list[2].TorC_bit       = 0x08;
+   26   1          TIMER_NORMAL_list[2].TnCLKO_bit     = 0x04; 
+   27   1          TIMER_NORMAL_list[2].TIMER_INT_FUNC = 0;
+   28   1      
+   29   1          TIMER_NORMAL_list[3].TIMER_ID       = 3;
+   30   1          TIMER_NORMAL_list[3].ENABLE_bit     = 0x08;
+   31   1          TIMER_NORMAL_list[3].F_Divider_bit  = 0x02;
+   32   1          TIMER_NORMAL_list[3].TorC_bit       = 0x04;
+   33   1          TIMER_NORMAL_list[3].TnCLKO_bit     = 0x01; 
+   34   1          TIMER_NORMAL_list[3].TIMER_INT_FUNC = 0;
+   35   1      
+   36   1          TIMER_NORMAL_list[4].TIMER_ID       = 4;
+   37   1          TIMER_NORMAL_list[4].ENABLE_bit     = 0x80;
+   38   1          TIMER_NORMAL_list[4].F_Divider_bit  = 0x20;
+   39   1          TIMER_NORMAL_list[4].TorC_bit       = 0x40;
+   40   1          TIMER_NORMAL_list[4].TnCLKO_bit     = 0x10;
+   41   1          TIMER_NORMAL_list[4].TIMER_INT_FUNC = 0;
+   42   1      
+   43   1          TIMER_T01_list[0].TIMER_NORMAL      =&TIMER_NORMAL_list[0];
+   44   1          TIMER_T01_list[1].TIMER_NORMAL      =&TIMER_NORMAL_list[1];
+   45   1          TIMER_T01_list[0].M0_bit            =0x01;
+   46   1          TIMER_T01_list[0].M1_bit            =0x02;
+   47   1          TIMER_T01_list[1].M0_bit            =0x10;
+   48   1          TIMER_T01_list[1].M1_bit            =0x20;
+   49   1      
+   50   1          TIMER_T34_list[0].TIMER_NORMAL      =&TIMER_NORMAL_list[3];
+   51   1          TIMER_T34_list[1].TIMER_NORMAL      =&TIMER_NORMAL_list[4];
+   52   1          TIMER_T34_list[0].Pin_choose_bit    =0x01;
+   53   1          TIMER_T34_list[1].Pin_choose_bit    =0x01;
+   54   1      
+   55   1          IE  |= 0x0A;
+   56   1          IE2 |= 0x64;
+   57   1      }
+C251 COMPILER V5.60.0,  TIMER                                                              10/01/22  23:01:36  PAGE 2   
+
+   58          
+   59          void TIMER_SET_TIMES(TIMER_enum Timerx,TIMER_COUNTER_enum TorC,uint16 times){
+*** WARNING C57 IN LINE 59 OF ..\CODES\BOARD\TIMER.c: parameter 3: different from declaration
+   60   1          uint16 temp;
+   61   1          if(TorC==T){
+   62   2              temp = 65536-((SYS_CLK/1000)/12)*times;
+*** WARNING C188 IN LINE 62 OF ..\CODES\BOARD\TIMER.c: 'constant': value truncated
+   63   2          }else{
+   64   2              temp = 65536 - times;
+*** WARNING C188 IN LINE 64 OF ..\CODES\BOARD\TIMER.c: 'constant': value truncated
+   65   2          }
+   66   1          switch (Timerx){
+   67   2          case 0:
+   68   2              TL0 = temp%256;
+   69   2              TH0 = temp>>8;
+   70   2              break;
+   71   2          case 1:
+   72   2              TL1 = temp%256;
+   73   2              TH1 = temp>>8;
+   74   2              break;
+   75   2          case 2:
+   76   2              T2L = temp%256;
+   77   2              T2H = temp>>8;
+   78   2              break;
+   79   2          case 3:
+   80   2              T3L = temp%256;
+   81   2              T3H = temp>>8;
+   82   2              break;
+   83   2          case 4:
+   84   2              T4L = temp%256;
+   85   2              T4H = temp>>8;
+   86   2              break;    
+   87   2          default:
+   88   2              break;
+   89   2          }
+   90   1      }
+   91          
+   92          void TIMER_INIT_TIMERx(TIMER_enum Timerx,TIMER_COUNTER_enum TorC,uint32 times,uint8 F_Div,uint8 is_CLKOUT
+             -,void (*func)()){
+   93   1          if(Timerx<=1){
+   94   2              TMOD    &= ~(TIMER_NORMAL_list[Timerx].TorC_bit);
+   95   2              AUXR    &= ~(TIMER_NORMAL_list[Timerx].F_Divider_bit);
+   96   2              INTCLKO &= ~(TIMER_NORMAL_list[Timerx].TnCLKO_bit);
+   97   2              TMOD    |= ((TIMER_NORMAL_list[Timerx].TorC_bit)*TorC);
+   98   2              AUXR    |= ((TIMER_NORMAL_list[Timerx].F_Divider_bit)*F_Div);
+   99   2              INTCLKO |= ((TIMER_NORMAL_list[Timerx].TnCLKO_bit)*is_CLKOUT);
+  100   2          }else if(Timerx==2){
+  101   2              AUXR    &= ~(TIMER_NORMAL_list[Timerx].F_Divider_bit|TIMER_NORMAL_list[Timerx].TorC_bit);
+  102   2              INTCLKO &= ~(TIMER_NORMAL_list[Timerx].TnCLKO_bit);
+  103   2              AUXR |= (
+  104   2                  (TIMER_NORMAL_list[Timerx].F_Divider_bit*F_Div) |
+  105   2                  (TIMER_NORMAL_list[Timerx].TorC_bit*TorC)      
+  106   2              );
+  107   2              INTCLKO |= ((TIMER_NORMAL_list[Timerx].TnCLKO_bit)*is_CLKOUT);
+  108   2          }else{
+  109   2              T4T3M &= ~(
+  110   2                  TIMER_NORMAL_list[Timerx].TorC_bit      |
+  111   2                  TIMER_NORMAL_list[Timerx].F_Divider_bit |
+  112   2                  TIMER_NORMAL_list[Timerx].TnCLKO_bit
+  113   2              );
+  114   2              T4T3M |= (
+  115   2                  TIMER_NORMAL_list[Timerx].TorC_bit*TorC         |
+  116   2                  TIMER_NORMAL_list[Timerx].F_Divider_bit*F_Div   |
+  117   2                  TIMER_NORMAL_list[Timerx].TnCLKO_bit*is_CLKOUT
+  118   2              );
+  119   2          }
+C251 COMPILER V5.60.0,  TIMER                                                              10/01/22  23:01:36  PAGE 3   
+
+  120   1          TIMER_SET_TIMES(Timerx,TorC,times);
+*** WARNING C188 IN LINE 120 OF ..\CODES\BOARD\TIMER.c: 'parameter 3': value truncated
+  121   1      }
+*** WARNING C47 IN LINE 92 OF ..\CODES\BOARD\TIMER.c: 'func': unreferenced parameter
+  122          
+  123          void TIMER_T01_SETMODE(TIMER_enum Timerx,T01_MODE_enum Mode){
+  124   1          TMOD &= ~(Mode<<(Timerx*4));
+  125   1          TMOD |=  (Mode<<(Timerx*4));
+  126   1      }
+  127          
+  128          
+  129          void TIMER_T34_SETPIN(TIMER_enum Timerx,T34_PIN_enum Pin_Mode){
+  130   1          
+  131   1      }
+*** WARNING C47 IN LINE 129 OF ..\CODES\BOARD\TIMER.c: 'Timerx': unreferenced parameter
+*** WARNING C47 IN LINE 129 OF ..\CODES\BOARD\TIMER.c: 'Pin_Mode': unreferenced parameter
+  132          
+  133          void TIMER_ENABLE(TIMER_enum Timerx){
+  134   1          if(Timerx<=1){
+  135   2              TCON |= TIMER_NORMAL_list[Timerx].ENABLE_bit;
+  136   2          }else if(Timerx==2){
+  137   2              AUXR |= TIMER_NORMAL_list[Timerx].ENABLE_bit;
+  138   2          }else{
+  139   2              T4T3M|= TIMER_NORMAL_list[Timerx].ENABLE_bit;
+  140   2          }
+  141   1      }
+  142          
+  143          void TIMER_DISABLE(TIMER_enum Timerx){
+  144   1          if(Timerx<=1){
+  145   2              TCON &= ~TIMER_NORMAL_list[Timerx].ENABLE_bit;
+  146   2          }else if(Timerx==2){
+  147   2              AUXR &= ~TIMER_NORMAL_list[Timerx].ENABLE_bit;
+  148   2          }else{
+  149   2              T4T3M&= ~TIMER_NORMAL_list[Timerx].ENABLE_bit;
+  150   2          }
+  151   1      }
+  152          
+  153          void TIMER_SET_TIMERFUNC(TIMER_enum Timerx,void (*func)()){
+  154   1          TIMER_NORMAL_list[Timerx].TIMER_INT_FUNC=func;
+  155   1      }
+  156          
+  157          uint32 TIMER_READ_COUNTER(TIMER_enum Timerx){
+  158   1          uint32 RES;
+  159   1          RES = 0x00;
+  160   1          switch (Timerx){
+  161   2          case 0:
+  162   2              RES |= TL0;
+  163   2              RES |= TH0<<8;
+  164   2              break;
+  165   2          case 1:
+  166   2              RES |= TL1;
+  167   2              RES |= TH1<<8;
+  168   2              break;
+  169   2          case 2:
+  170   2              RES |= T2L;
+  171   2              RES |= T2H<<8;
+  172   2              break;
+  173   2          case 3:
+  174   2              RES |= T3L;
+  175   2              RES |= T3H<<8;
+  176   2              break;
+  177   2          case 4:
+  178   2              RES |= T4L;
+  179   2              RES |= T4H<<8;
+  180   2              break;    
+  181   2          default:
+C251 COMPILER V5.60.0,  TIMER                                                              10/01/22  23:01:36  PAGE 4   
+
+  182   2              break;
+  183   2          }
+  184   1      }
+  185          
+  186          void TIMER_CLEAN_COUNTER(TIMER_enum Timerx){
+  187   1          switch (Timerx){
+  188   2          case 0:
+  189   2              TL0 = 0x00;
+  190   2              TH0 = 0x00;
+  191   2              break;
+  192   2          case 1:
+  193   2              TL1 = 0x00;
+  194   2              TH1 = 0x00;
+  195   2              break;
+  196   2          case 2:
+  197   2              T2L = 0x00;
+  198   2              T2H = 0x00;
+  199   2              break;
+  200   2          case 3:
+  201   2              T3L = 0x00;
+  202   2              T3H = 0x00;
+  203   2              break;
+  204   2          case 4:
+  205   2              T4L = 0x00;
+  206   2              T4H = 0x00;
+  207   2              break;    
+  208   2          default:
+  209   2              break;
+  210   2          }
+  211   1      }
+  212          
+  213          void TIMER0_Routine() interrupt 1
+  214          {
+  215   1          if(TIMER_NORMAL_list[0].TIMER_INT_FUNC!=0) (*TIMER_NORMAL_list[0].TIMER_INT_FUNC)();
+  216   1      }
+  217          
+  218          void TIMER1_Routine() interrupt 3
+  219          {
+  220   1          if(TIMER_NORMAL_list[1].TIMER_INT_FUNC!=0) (*TIMER_NORMAL_list[1].TIMER_INT_FUNC)();
+  221   1      }
+  222          
+  223          void TIMER2_Routine() interrupt 12
+  224          {
+  225   1          if(TIMER_NORMAL_list[2].TIMER_INT_FUNC!=0) (*TIMER_NORMAL_list[2].TIMER_INT_FUNC)();
+  226   1      }
+  227          
+  228          void TIMER3_Routine() interrupt 19
+  229          {
+  230   1          if(TIMER_NORMAL_list[3].TIMER_INT_FUNC!=0) (*TIMER_NORMAL_list[3].TIMER_INT_FUNC)();
+  231   1      }
+  232          
+  233          void TIMER4_Routine() interrupt 20
+  234          {
+  235   1          if(TIMER_NORMAL_list[4].TIMER_INT_FUNC!=0) (*TIMER_NORMAL_list[4].TIMER_INT_FUNC)();
+  236   1      }
+*** WARNING C135 IN LINE 184 OF ..\CODES\BOARD\TIMER.c: 'TIMER_READ_COUNTER': no return value
+*** WARNING C135 IN LINE 184 OF ..\CODES\BOARD\TIMER.c: 'TIMER_READ_COUNTER': no return value
+
+
+Module Information          Static   Overlayable
+------------------------------------------------
+  code size            =      1265     ------
+  ecode size           =    ------     ------
+  data size            =    ------     ------
+  idata size           =    ------     ------
+  pdata size           =    ------     ------
+  xdata size           =        77          3
+C251 COMPILER V5.60.0,  TIMER                                                              10/01/22  23:01:36  PAGE 5   
+
+  xdata-const size     =    ------     ------
+  edata size           =    ------     ------
+  bit size             =    ------     ------
+  ebit size            =    ------     ------
+  bitaddressable size  =    ------     ------
+  ebitaddressable size =    ------     ------
+  far data size        =    ------     ------
+  huge data size       =    ------     ------
+  const size           =    ------     ------
+  hconst size          =    ------     ------
+End of Module Information.
+
+
+C251 COMPILATION COMPLETE.  9 WARNING(S),  0 ERROR(S)

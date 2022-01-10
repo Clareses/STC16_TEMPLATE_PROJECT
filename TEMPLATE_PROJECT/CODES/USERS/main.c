@@ -16,5 +16,6 @@ void main(){
     lcd_init();
     while(1){
         lcd_clear(WHITE);
+        lcd_showchar(1,1,'a');  
     }
 }
