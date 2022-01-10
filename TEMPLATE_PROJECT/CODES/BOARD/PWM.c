@@ -3,7 +3,7 @@
  * @Author       : FZU Liao
  * @Date         : 2021-12-31 19:34:13
  * @LastEditors  : Liao
- * @LastEditTime : 2022-01-06 00:30:39
+ * @LastEditTime : 2022-01-10 09:26:07
  * @FilePath     : \TEMPLATE_PROJECT\CODES\BOARD\PWM.c
  * Copyright 2021 FZU Liao, All Rights Reserved. 
  */
@@ -18,6 +18,7 @@ const uint32 PWM_CCER_ADDR[] = {0x7efecc, 0x7efecd, 0x7efeec ,0x7efeed};
 const uint32  PWM_ARR_ADDR[] = {0x7efed2,0x7efef2};
 
 void PWM_INIT_PWMCHANNEL(PWM_CHANNEL_enum PWMn_CHx_Pin,uint32 Frequecy, uint16 Duty){
+	if(Duty>10000) Duty = 10000;	//限幅
 	uint16 DUTY_RATIO;              //占空比
 	uint16 CYCLE_TIME;              //周期
 	uint16 FREQUENCY_DIVIDER = 0;   //分频
@@ -66,6 +67,7 @@ void PWM_INIT_PWMCHANNEL(PWM_CHANNEL_enum PWMn_CHx_Pin,uint32 Frequecy, uint16 D
 }
 
 void PWM_SET_DUTY(PWM_CHANNEL_enum PWMn_CHx_Pin,uint16 Duty){
+	if(Duty>10000) Duty=10000;
     uint16 DUTY_RATIO;
 	uint16 ARR = ((*(unsigned char volatile far *) (PWM_ARR_ADDR[PWMn_CHx_Pin>>6]))<<8) 
                  |(*(unsigned char volatile far *) (PWM_ARR_ADDR[PWMn_CHx_Pin>>6] + 1 ));
