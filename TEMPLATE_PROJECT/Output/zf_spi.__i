@@ -1,0 +1,1 @@
+"..\CODES\ZF_lib\zf_spi.c" LARGE INTR2 BROWSE INCDIR(..\CODES\BOARD;..\CODES\ALGORITHM;..\CODES\DRIVER;..\CODES\USERS) DEBUG PRINT(.\Listings\zf_spi.lst) OBJECT(..\Output\zf_spi.obj)

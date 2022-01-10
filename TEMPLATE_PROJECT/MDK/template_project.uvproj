@@ -454,6 +454,26 @@
               <FileType>5</FileType>
               <FilePath>..\CODES\ALGORITHM\PID.h</FilePath>
             </File>
+            <File>
+              <FileName>EM_Calc.c</FileName>
+              <FileType>1</FileType>
+              <FilePath>..\CODES\ALGORITHM\EM_Calc.c</FilePath>
+            </File>
+            <File>
+              <FileName>EM_Calc.h</FileName>
+              <FileType>5</FileType>
+              <FilePath>..\CODES\ALGORITHM\EM_Calc.h</FilePath>
+            </File>
+            <File>
+              <FileName>EM_FILTER.c</FileName>
+              <FileType>1</FileType>
+              <FilePath>..\CODES\ALGORITHM\EM_FILTER.c</FilePath>
+            </File>
+            <File>
+              <FileName>EM_FILTER.h</FileName>
+              <FileType>5</FileType>
+              <FilePath>..\CODES\ALGORITHM\EM_FILTER.h</FilePath>
+            </File>
           </Files>
         </Group>
         <Group>
@@ -533,6 +553,36 @@
               <FileName>SEEKFREE_PRINTF.h</FileName>
               <FileType>5</FileType>
               <FilePath>..\CODES\ZF_lib\SEEKFREE_PRINTF.h</FilePath>
+            </File>
+            <File>
+              <FileName>zf_delay.c</FileName>
+              <FileType>1</FileType>
+              <FilePath>..\CODES\ZF_lib\zf_delay.c</FilePath>
+            </File>
+            <File>
+              <FileName>zf_delay.h</FileName>
+              <FileType>5</FileType>
+              <FilePath>..\CODES\ZF_lib\zf_delay.h</FilePath>
+            </File>
+            <File>
+              <FileName>zf_gpio.c</FileName>
+              <FileType>1</FileType>
+              <FilePath>..\CODES\ZF_lib\zf_gpio.c</FilePath>
+            </File>
+            <File>
+              <FileName>zf_gpio.h</FileName>
+              <FileType>5</FileType>
+              <FilePath>..\CODES\ZF_lib\zf_gpio.h</FilePath>
+            </File>
+            <File>
+              <FileName>zf_spi.c</FileName>
+              <FileType>1</FileType>
+              <FilePath>..\CODES\ZF_lib\zf_spi.c</FilePath>
+            </File>
+            <File>
+              <FileName>zf_spi.h</FileName>
+              <FileType>5</FileType>
+              <FilePath>..\CODES\ZF_lib\zf_spi.h</FilePath>
             </File>
           </Files>
         </Group>
