@@ -272,7 +272,7 @@
               <MiscControls></MiscControls>
               <Define></Define>
               <Undefine></Undefine>
-              <IncludePath>..\CODES\BOARD;..\CODES\ALGORITHM;..\CODES\DRIVER;..\CODES\USERS</IncludePath>
+              <IncludePath>..\CODES\BOARD;..\CODES\ALGORITHM;..\CODES\DRIVER;..\CODES\USERS;..\CODES\ZF_lib</IncludePath>
             </VariousControls>
           </C251>
           <Ax51>

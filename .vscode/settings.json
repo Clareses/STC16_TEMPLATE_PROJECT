@@ -1,6 +1,7 @@
 {
     "files.associations": {
         "pwm.h": "c",
-        "adc.h": "c"
+        "adc.h": "c",
+        "seekfree_18tft.h": "c"
     }
 }

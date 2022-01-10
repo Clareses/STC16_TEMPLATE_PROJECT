@@ -1,5 +1,6 @@
 #include "HEADFILE.h"
-#include "MyControlSys.h"
+#include "SEEKFREE_18TFT.h"
+#include "SEEKFREE_FONT.h"
 
 void SYS_INIT_ALL(){
     BOARD_INIT();
@@ -12,5 +13,8 @@ void SYS_INIT_ALL(){
 
 void main(){
     SYS_INIT_ALL();
-
+    lcd_init();
+    while(1){
+        lcd_clear(WHITE);
+    }
 }
