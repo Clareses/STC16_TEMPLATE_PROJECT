@@ -25,7 +25,7 @@ void SERVO_INIT_MOTOR();
  * @return *
  * @example: 
  */
-void SERVO_SET_ANGLE(int Angle);
+void SERVO_SET_ANGLE(float Angle);
 
 /**
  * @description: 逆初始化伺服电机

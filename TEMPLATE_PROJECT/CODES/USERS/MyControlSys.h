@@ -3,7 +3,7 @@
  * @Author       : FZU Liao
  * @Date         : 2022-01-06 16:58:07
  * @LastEditors  : Liao
- * @LastEditTime : 2022-01-10 09:35:56
+ * @LastEditTime : 2022-01-10 12:00:10
  * @FilePath     : \TEMPLATE_PROJECT\CODES\USERS\MyControlSys.h
  * Copyright 2022 FZU Liao, All Rights Reserved. 
  */
@@ -24,7 +24,8 @@
 #define max_SPEED 2
 
 int EM_DATA_LIST[4];
-int ANGLE,TARGET_SPEED,CURRENT_SPEED,index;
+int TARGET_SPEED,CURRENT_SPEED,index;
+float ANGLE;
 
 EM_FILTER FILTER;
 
@@ -34,6 +35,7 @@ void MySYS_INIT(){
     ENCODING_INIT(TIMER1_P35);
     MySTEPMOTOR_PID_INIT();
     MyStepMotor_INIT();
+    MySTEERING_PID_INIT();
     EM_FILTER_INIT(&FILTER,1,1);
 }
 
@@ -48,7 +50,6 @@ void My_routineTask(){
     ANGLE = Streering_Control(EM_DATA_LIST);
     CURRENT_SPEED = ENCODING_READ_RESULT(TIMER1_P35);   //读取计数器，处理
     //利用舵机打角角度，处理出速度目标值
-    
     TARGET_SPEED = min_SPEED + (max_SPEED - min_SPEED)/10*ANGLE;
     //传两个值给电机控制系统（一个当前值，一个目标值）
     StepMotor_Control(CURRENT_SPEED,TARGET_SPEED);

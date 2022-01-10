@@ -3,7 +3,7 @@
  * @Author       : FZU Liao
  * @Date         : 2022-01-03 14:35:08
  * @LastEditors  : Liao
- * @LastEditTime : 2022-01-07 22:08:26
+ * @LastEditTime : 2022-01-10 11:44:08
  * @FilePath     : \TEMPLATE_PROJECT\CODES\DRIVER\SERVO_MOTOR.c
  * Copyright 2022 FZU Liao, All Rights Reserved. 
  */
@@ -21,7 +21,7 @@ void SERVO_INIT_MOTOR(){
     PWM_ENABLE(SERVO_OUTPUT);
 }
 
-void SERVO_SET_ANGLE(int Angle){
+void SERVO_SET_ANGLE(float Angle){
     uint16 DUTY;
     if(Angle>MAX_ANGLE) Angle = MAX_ANGLE;
     if(Angle<-MAX_ANGLE) Angle = -MAX_ANGLE;
