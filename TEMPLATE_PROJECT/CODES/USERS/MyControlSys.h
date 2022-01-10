@@ -3,7 +3,7 @@
  * @Author       : FZU Liao
  * @Date         : 2022-01-06 16:58:07
  * @LastEditors  : Liao
- * @LastEditTime : 2022-01-09 20:40:14
+ * @LastEditTime : 2022-01-10 09:35:56
  * @FilePath     : \TEMPLATE_PROJECT\CODES\USERS\MyControlSys.h
  * Copyright 2022 FZU Liao, All Rights Reserved. 
  */
@@ -13,8 +13,8 @@
 
 #include "HEADFILE.h"
 #include "MyStepMotorControl.h"
-#include "MyStreeringControl.h"
-#include "MyStreeringAdapter.h"
+#include "MySteeringControl.h"
+#include "MySteeringPIDAdapter.h"
 #include "MyStepMotorPIDAdapter.h"
 #include "EM_SENSOR.h"
 #include "ENCODE_SENSOR.h"

@@ -3,15 +3,15 @@
  * @Author       : FZU Liao
  * @Date         : 2022-01-06 16:57:52
  * @LastEditors  : Liao
- * @LastEditTime : 2022-01-06 22:02:26
- * @FilePath     : \TEMPLATE_PROJECT\CODES\USERS\MyStreeringControl.h
+ * @LastEditTime : 2022-01-10 09:35:48
+ * @FilePath     : \TEMPLATE_PROJECT\CODES\USERS\MySteeringControl.h
  * Copyright 2022 FZU Liao, All Rights Reserved. 
  */
 
 #ifndef __STREERING_CONTROL__
 #define __STREERING_CONTROL__
 
-#include "MyStreeringAdapter.h"
+#include "MySteeringPIDAdapter.h"
 
 void MyStreeringMotor_INIT();
 
