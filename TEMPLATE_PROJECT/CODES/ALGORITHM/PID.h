@@ -73,7 +73,7 @@ void PID_SET_FACTORS(PID* PID_CONTROL,float Param_P,float Param_I,float Param_D)
  * @return PID_OUTPUT           PID算法的结果
  * @example: NULL
  */
-float PID_CLAC_RESULT(PID* PID_CONTROL,float CURRENT_INPUT);
+float PID_CALC_RESULT(PID* PID_CONTROL,float CURRENT_INPUT);
 
 /**
  * @description:            逆初始化PID算法

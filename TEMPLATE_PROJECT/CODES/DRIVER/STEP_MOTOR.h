@@ -3,7 +3,7 @@
  * @Author       : FZU Liao
  * @Date         : 2022-01-03 15:48:15
  * @LastEditors  : Liao
- * @LastEditTime : 2022-01-08 21:02:42
+ * @LastEditTime : 2022-01-11 09:58:03
  * @FilePath     : \TEMPLATE_PROJECT\CODES\DRIVER\STEP_MOTOR.h
  * Copyright 2022 FZU Liao, All Rights Reserved. 
  */
@@ -79,5 +79,13 @@ void STEP_MOTOR_BACK(STEP_MOTOR* MOTOR);
  * @example: 
  */
 STEP_MOTOR_STATUS STEP_MOTOR_READ_STATUS(STEP_MOTOR* MOTOR);
+
+/**
+ * @description: 读取电机占空比
+ * @param MOTOR STEP_MOTOR*
+ * @return *
+ * @example: 
+ */
+uint32 STEP_MOTOR_GET_DUTY(STEP_MOTOR* MOTOR)
 
 #endif

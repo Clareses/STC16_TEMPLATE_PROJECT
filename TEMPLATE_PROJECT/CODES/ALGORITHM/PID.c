@@ -3,8 +3,8 @@
  * @Author       : FZU Liao
  * @Date         : 2022-01-02 20:19:32
  * @LastEditors  : Liao
- * @LastEditTime : 2022-01-03 11:24:13
- * @FilePath     : \ALGORITHM\PID.c
+ * @LastEditTime : 2022-01-09 23:31:24
+ * @FilePath     : \TEMPLATE_PROJECT\CODES\ALGORITHM\PID.c
  * Copyright 2022 FZU Liao, All Rights Reserved. 
  */
 
@@ -21,7 +21,7 @@ void PID_SET_FACTORS(PID* PID_CONTROL,float Param_P,float Param_I,float Param_D)
     PID_CONTROL->FACTOR_Differential = Param_D;
 }
 
-float PID_CLAC_RESULT(PID* PID_CONTROL,float CURRENT_INPUT){
+float PID_CALC_RESULT(PID* PID_CONTROL,float CURRENT_INPUT){
     float PID_OUTPUT;
     float ERROR,d_ERROR;
     if(PID_CONTROL->PID_X_MODE == PID_REALIZE_MODE){
